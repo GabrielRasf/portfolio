@@ -101,6 +101,12 @@ body {
         url('../src/fonts/MeshedDisplay-ThinSlanted.woff') format('woff')
 }
 
+@font-face {
+    font-family: 'Satoshi-Regular';
+    src: url('../src/fonts/Satoshi-Regular.woff2') format('woff')
+    url('../src/fonts/Satoshi-Regular.woff') format('woff2'),
+}
+
 /* ============================== */
 /* Preloader */
 /* ============================== */
@@ -277,29 +283,46 @@ h1 {
     /* acima do overlay */
 }
 
+/* Menor tamanho */
 h1.h1-brazillian {
     margin: 4rem 0;
     font-size: clamp(6rem, 3vw, 8rem);
-    font-family: 'Migha-Condensed';
+    font-family: 'Satoshi-Regular';
     text-align: center;
     letter-spacing: 1rem;
     color: #D9CBBA;
+
 }
 
-.section-h1-front-end {
-    display: flex;
-    justify-content: space-around;
-}
 
+/* Médio tamanho */
 h1.h1-front-end {
     margin: 4rem 0;
     display: flex;
     justify-content: space-between;
     font-size: clamp(8rem, 3vw, 10rem);
-    font-family: 'Migha-Condensed';
+    font-family: 'Satoshi-Regular';
     text-align: center;
     letter-spacing: 3rem;
     color: #D9CBBA;
+    
+}
+
+/* Maior tamanho */
+h1.h1-creative-developer {
+    margin: 4rem 0;
+    font-size: clamp(10rem, 3vw, 14rem);
+    font-family: 'Satoshi-Regular';
+    letter-spacing: 1rem;
+    color: #D9CBBA;
+    position: relative;
+    transition: transform 0.2s ease-out;
+}
+
+/* Sections */
+.section-h1-front-end {
+    display: flex;
+    justify-content: space-around;
 }
 
 .section-h1-creative-developer {
@@ -309,17 +332,6 @@ h1.h1-front-end {
     margin-top: 4rem;
     gap: 4rem;
 }
-
-h1.h1-creative-developer {
-    margin: 4rem 0;
-    font-size: clamp(6rem, 3vw, 8rem);
-    font-family: 'Migha-Condensed';
-    letter-spacing: 1rem;
-    color: #D9CBBA;
-    position: relative;
-    transition: transform 0.2s ease-out;
-}
-
 
 
 /* ============================== */
