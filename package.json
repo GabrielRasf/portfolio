@@ -6,8 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy":"vercel --prod"
-
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
     "vite": "^6.3.6",
@@ -17,6 +16,6 @@
   "dependencies": {
     "lil-gui": "^0.20.0",
     "three": "^0.174.0",
-    "vercel": "^47.0.7"
+    "vercel": "^25.2.0"
   }
 }
