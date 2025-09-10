@@ -352,6 +352,7 @@ h1.h1-creative-developer:hover {
 /* ============================== */
 /* SECTION 2
 /* ============================== */
+
 .marquee {
     overflow: hidden;
     white-space: nowrap;
@@ -384,8 +385,9 @@ h1.h1-creative-developer:hover {
 }
 
 .about-frame {
+    position: relative;
     background-color: rgba(32, 32, 32, 0.342);
-    z-index: 1;
+    z-index: -1;
     border-radius: 1rem;
     margin: 5vh auto;
 
@@ -414,6 +416,18 @@ h1.h1-creative-developer:hover {
     width: 0;
     animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
 }
+
+.card-about {
+    position: absolute;
+    border: 1px solid white;
+    width: 25rem;
+    height: 35rem;
+    z-index: 5;
+    top: 15rem;
+    right: 18rem;
+    transform: rotate(18deg);
+}
+
 
 @keyframes typing {
     from { width: 0 }
@@ -477,11 +491,6 @@ h1.h1-creative-developer:hover {
     height: 70vh;
     width: 80vw;
 }
-
-
-
-
-
 
 /* ============================== */
 /* MEDIA QUERIES */
