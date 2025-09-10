@@ -69,7 +69,7 @@ window.onload = () => {
 /* ===================================================
    ==================== GUI / DEBUG ==================
    =================================================== */
-const gui = new GUI({ width: 340, closed: true });
+const gui = new GUI({ width: 300, closed: true });
 gui.domElement.style.position = 'fixed';
 gui.domElement.style.bottom = '10px';
 gui.domElement.style.right = '10px';
@@ -158,7 +158,7 @@ scene.add(particles);
 /* ===================================================
    ==================== WATER ========================
    =================================================== */
-debugObject.depthColor = '#ff4000';
+debugObject.depthColor = '#920C80';
 debugObject.surfaceColor = '#151c37';
 
 const waterGeometry = new THREE.PlaneGeometry(3, 2, 1024, 1024);
@@ -377,7 +377,7 @@ document.querySelectorAll("ul.smoky").forEach(ul => {
             window.open(link, "_blank");
 
             ul.classList.remove("animate");
-        }, 2000);
+        }, 1200);
     });
 });
 
