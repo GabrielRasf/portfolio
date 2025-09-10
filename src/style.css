@@ -277,7 +277,7 @@ li a {
     display: inline-block;
     font-size: clamp(1.5rem, 1.5vw, 2rem);
     min-width: 6rem;
-    cursor: pointer;
+    cursor: grabbing;
     font-weight: 600;
     color: #D9CBBA;
     transition: transform 0.3s;
@@ -302,6 +302,7 @@ li a:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: start;
 }
 
 h1 {
@@ -315,6 +316,7 @@ h1.h1-brazillian {
     font-family: 'Satoshi-Regular';
     letter-spacing: 1rem;
     color: #D9CBBA;
+    cursor: grabbing;
 }
 
 h1.h1-brazillian:hover {
@@ -327,10 +329,11 @@ h1.h1-front-end {
     margin: 4rem 0;
     display: flex;
     justify-content: space-between;
-    font-size: clamp(8rem, 3vw, 10rem);
+    font-size: clamp(9rem, 3vw, 11rem);
     font-family: 'Satoshi-Regular';
     letter-spacing: 2rem;
     color: #D9CBBA;
+    cursor: grabbing;
 }
 
 h1.h1-front-end:hover {
@@ -339,18 +342,21 @@ h1.h1-front-end:hover {
 
 /* Maior tamanho */
 h1.h1-creative-developer {
+    display: inline-block;
     margin: 4rem 0 8rem 0;
-    font-size: clamp(10rem, 3vw, 14rem);
+    font-size: clamp(12rem, 3vw, 16rem);
     font-family: 'Satoshi-Regular';
-    letter-spacing: 3rem;
     color: #D9CBBA;
     position: relative;
-    word-break: break-word;
+    white-space: nowrap;
     transition: transform 0.2s ease-out;
+    cursor: grabbing;
 }
 
-h1.h1-creative-developer:hover {
-    color: #8C8480;
+h1.h1-creative-developer span {
+    display: inline-block;
+    letter-spacing: 3rem;
+    /* aplicado apenas ao conteúdo real */
 }
 
 /* Sections */
@@ -505,12 +511,61 @@ h1.h1-creative-developer:hover {
 }
 
 
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .works {
     font-size: clamp(6rem, 12vw, 18rem);
     font-family: 'Anton-Regular', sans-serif;
     color: #bdaaa167;
     margin: 0;
     line-height: 0.3;
+
+    opacity: 0;
+    transform: translateX(-100px);
+    /* começa deslocado */
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+/* Classe que dispara animação */
+.works.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Delay progressivo */
+.indent-0.animate {
+    margin-left: 0;
+    transition-delay: 0.2s;
+}
+
+.indent-1.animate {
+    margin-left: 8rem;
+    transition-delay: 0.4s;
+}
+
+.indent-2.animate {
+    margin-left: 3rem;
+    transition-delay: 0.6s;
+}
+
+.indent-3.animate {
+    margin-left: 5rem;
+    transition-delay: 0.8s;
+}
+
+.indent-4.animate {
+    margin-left: 1rem;
+    transition-delay: 1s;
 }
 
 .work-frame {
@@ -544,10 +599,60 @@ h1.h1-creative-developer:hover {
 }
 
 /* ============================== */
+/* CONTACTS RESPONSIVO */
+/* ============================== */
+ul.smoky {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+}
+
+ul.smoky li {
+    list-style: none;
+    color: rgba(255, 255, 255, 0.226);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: bold;
+    letter-spacing: clamp(0.2rem, 2vw, 1rem);
+    transition:
+        color 0.3s ease,
+        opacity 2s ease,
+        filter 1.5s ease;
+}
+
+/* Hover ou efeito smoky */
+ul.smoky.animate li {
+    opacity: 0;
+    filter: blur(10px);
+}
+
+/* Hover scale separado */
+ul.smoky.hover-scale li:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.555);
+    transform: scale(1.1);
+}
+
+/* ============================== */
+/* FOOTER */
+/* ============================== */
+.footer {
+    margin-top: 8rem;
+}
+
+/* ============================== */
 /* MEDIA QUERIES */
 /* ============================== */
 
 @media (max-width: 768px) {
+
+    .menu-left ul li a:hover {
+        transform: none;
+        color: inherit;
+    }
 
     .h1:hover {
         pointer-events: none;
@@ -626,5 +731,21 @@ h1.h1-creative-developer:hover {
         padding-top: 3rem;
         box-sizing: border-box;
         color: #1d1a19;
+    }
+
+    ul.smoky {
+        gap: 0.3em;
+        flex-wrap: wrap;
+    }
+
+    ul.smoky li {
+        font-size: clamp(2rem, 10vw, 4rem);
+        /* se ajusta ao mobile */
+        letter-spacing: 0.2rem;
+    }
+
+    ul.smoky.animate li {
+        transform: rotate(45deg) translateY(-3em);
+        filter: blur(8px);
     }
 }

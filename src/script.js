@@ -90,9 +90,9 @@ const sizes = { width: window.innerWidth, height: window.innerHeight };
 
 // ---- Camera ----
 const camera = new THREE.PerspectiveCamera(
-    75, 
-    sizes.width / sizes.height, 
-    0.1, 
+    75,
+    sizes.width / sizes.height,
+    0.1,
     100);
 camera.position.set(0, 0, 1);
 scene.add(camera);
@@ -161,7 +161,7 @@ scene.add(particles);
 debugObject.depthColor = '#ff4000';
 debugObject.surfaceColor = '#151c37';
 
-const waterGeometry = new THREE.PlaneGeometry(8, 2, 512, 512);
+const waterGeometry = new THREE.PlaneGeometry(3, 2, 1024, 1024);
 const waterMaterial = new THREE.ShaderMaterial({
     vertexShader: waterVertexShader,
     fragmentShader: waterFragmentShader,
@@ -252,20 +252,11 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* ===================================================
    ==================== TYPEWRITER ====================
    =================================================== */
-const text = `I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development.
-Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development.
-
-Skills:
-HTML
-CSS
-Javascript
-ThreeJs
-NodeJs
-Blender`;
-
+const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML CSS Javascript ThreeJs NodeJs Blender";
 const el = document.getElementById("typewriter");
 let i = 0, forward = true;
 
+// Função typewriter
 function typeWriter() {
     if (forward) {
         if (i < text.length) el.textContent += text.charAt(i++);
@@ -273,15 +264,31 @@ function typeWriter() {
         if (i > 0) el.textContent = text.substring(0, --i);
         else forward = true;
     }
+
     setTimeout(typeWriter, forward ? 100 : 50);
 }
 
-typeWriter();
+// Observer para disparar quando a seção entrar na tela
+let typewriterStarted = false;
+const observerType = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !typewriterStarted) {
+            typewriterStarted = true;
+            setTimeout(typeWriter, 1000); // espera 1s antes de começar
+            obs.unobserve(entry.target); // dispara apenas uma vez
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observa o elemento do typewriter
+observerType.observe(el);
+
 
 /* ===================================================
    ==================== HTML TEXT INTERACTION =========
    =================================================== */
-if (window.matchMedia("(hover: hover)").matches) {
+// Só habilita o efeito em telas grandes e dispositivos com hover
+if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
     const texts = document.querySelectorAll('.h1-brazillian, .h1-front-end, .h1-creative-developer, .menu-header li');
 
     texts.forEach(text => {
@@ -332,6 +339,45 @@ document.addEventListener('mousemove', (event) => {
             const offsetY = mouseY - (rect.top + rect.height / 2);
             frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
         }
+    });
+});
+
+
+/* ===================================================
+   ==================== WORKS ANIMATION===============
+   =================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const sectionWorks = document.querySelector("#works");
+    const works = document.querySelectorAll(".works");
+
+    if (!sectionWorks || works.length === 0) return; // segurança
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                works.forEach(el => el.classList.add("animate"));
+                obs.unobserve(sectionWorks); // dispara apenas uma vez
+            }
+        });
+    }, { threshold: 0.1 }); // 10% visível já dispara
+
+    observer.observe(sectionWorks);
+});
+
+/* ===================================================
+   ==================== SMOKY ========================
+   =================================================== */
+document.querySelectorAll("ul.smoky").forEach(ul => {
+    ul.addEventListener("click", () => {
+        ul.classList.add("animate");
+
+        const link = ul.getAttribute("data-link");
+
+        setTimeout(() => {
+            window.open(link, "_blank");
+
+            ul.classList.remove("animate");
+        }, 2000);
     });
 });
 
