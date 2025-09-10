@@ -430,8 +430,13 @@ h1.h1-creative-developer:hover {
 
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
 }
 
 
@@ -497,6 +502,27 @@ h1.h1-creative-developer:hover {
 /* ============================== */
 
 @media (max-width: 768px) {
+    .scroll-area {
+        z-index: 5;
+        position: fixed;
+        bottom: 6rem;
+        right: 6rem;
+        border: 1px solid white;
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+
+    .scroll.area p:hover {
+        position: relative;
+    }
+
     .container {
         grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
         gap: 3px;
