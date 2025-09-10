@@ -310,6 +310,19 @@ h1 {
     z-index: 2;
 }
 
+.section-h1-brazillian,
+.section-h1-front-end,
+.section-h1-creative-developer,
+.container-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 2rem;
+    gap: 1rem;
+    text-align: start;
+}
+
 h1.h1-brazillian {
     margin: 4rem 0;
     font-size: clamp(6rem, 3vw, 8rem);
@@ -327,7 +340,6 @@ h1.h1-brazillian:hover {
 /* Médio tamanho */
 h1.h1-front-end {
     margin: 4rem 0;
-    display: flex;
     justify-content: space-between;
     font-size: clamp(9rem, 3vw, 11rem);
     font-family: 'Satoshi-Regular';
@@ -342,7 +354,6 @@ h1.h1-front-end:hover {
 
 /* Maior tamanho */
 h1.h1-creative-developer {
-    display: inline-block;
     margin: 4rem 0 8rem 0;
     font-size: clamp(12rem, 3vw, 16rem);
     font-family: 'Satoshi-Regular';
@@ -360,7 +371,6 @@ h1.h1-creative-developer:hover {
 h1.h1-creative-developer span {
     display: inline-block;
     letter-spacing: 3rem;
-    /* aplicado apenas ao conteúdo real */
 }
 
 /* Sections */
@@ -537,7 +547,7 @@ h1.h1-creative-developer span {
     opacity: 0;
     transform: translateX(-100px);
     /* começa deslocado */
-    transition: transform 1s ease-out, opacity 1s ease-out;
+    transition: transform 2s ease-out, opacity 2s ease-out;
 }
 
 /* Classe que dispara animação */
@@ -653,9 +663,11 @@ ul.smoky.hover-scale li:hover {
 
 @media (max-width: 768px) {
 
-    .menu-left ul li a:hover {
+    .menu-left ul li:hover {
         transform: none;
         color: inherit;
+        pointer-events: none;
+
     }
 
     .h1:hover {

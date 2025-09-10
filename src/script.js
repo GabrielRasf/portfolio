@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.unobserve(sectionWorks); // dispara apenas uma vez
             }
         });
-    }, { threshold: 0.1 }); // 10% visível já dispara
+    }, { threshold: 0.3 }); // 10% visível já dispara
 
     observer.observe(sectionWorks);
 });
