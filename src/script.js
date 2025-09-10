@@ -14,7 +14,7 @@ const preloader = document.getElementById('preloader');
 const content = document.getElementById('content');
 
 let contador = 1;
-const duracaoTotal = 3000;
+const duracaoTotal = 1800;
 const numerosTotais = 100;
 const intervalo = duracaoTotal / numerosTotais;
 
@@ -42,6 +42,7 @@ window.onload = () => {
     }, 500); // coincide com transition
   }, 300);
 };
+
 
 /**
  * ====================
@@ -211,18 +212,93 @@ document.addEventListener('mousemove', (event) => {
 
 /**
  * ====================
+ * SMOOTH
+ * ====================
+ */
+
+function smoothScroll(target, duration = 1000) {
+    const start = window.scrollY; // posição inicial
+    const end = target.offsetTop; // posição final
+    const distance = end - start;
+    let startTime = null;
+
+    // função de easing (easeInOutCubic)
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+
+        window.scrollTo(0, start + distance * ease);
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// Exemplo: adicionando aos links do menu
+const links = document.querySelectorAll('a[href^="#"]');
+
+links.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) smoothScroll(target, 1800); // 1200ms de duração
+    });
+});
+
+/**
+ * ====================
+ * SECTION 2 - About me
+ * ====================
+ */
+
+const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. \nSince 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development.\n \nSkills:\nHTML\nCSS\nJavascript\nThreeJs\nNodeJs\nBlender";
+const el = document.getElementById("typewriter");
+let i = 0;
+let forward = true;
+
+function typeWriter() {
+    if (forward) {
+        if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+        } 
+    } else {
+        if (i > 0) {
+            el.textContent = text.substring(0, i - 1);
+            i--;
+        } else {
+            forward = true;
+        }
+    }
+    setTimeout(typeWriter, forward ? 100 : 50);
+}
+
+typeWriter();
+
+/**
+ * ====================
  * HTML TEXT INTERACTION
  * ====================
  */
 const texts = document.querySelectorAll(
     '.h1-brazillian, .h1-front-end, .h1-creative-developer, .menu-header li'
-
 )
 
 texts.forEach((text) => {
     text.style.position = 'relative'
     text.style.display = 'inline-block'
-    text.style.transition = 'transform 0.1s'
+    text.style.transition = 'transform 0.05s'
 
     text.addEventListener('mouseenter', () => { text.followCursor = true })
     text.addEventListener('mouseleave', () => { 
@@ -242,6 +318,45 @@ document.addEventListener('mousemove', (event) => {
             const offsetY = mouseY - (rect.top + rect.height / 2)
 
             text.style.transform = `translate(${offsetX}px, ${offsetY}px)`
+        }
+    })
+})
+
+
+
+/**
+ * ====================
+ * FRAMES
+ * ====================
+ */
+
+const frames = document.querySelectorAll(
+    'work-frame'
+)
+
+frames.forEach((frame) => {
+    frames.style.position = 'relative'
+    frame.style.display = 'inline-block'
+    frame.style.transition = 'transform 0.05s'
+
+    text.addEventListener('mouseenter', () => { frame.followCursor = true })
+    frame.addEventListener('mouseleave', () => { 
+        frame.followCursor = false
+        frame.style.transform = 'translate(0, 0)'
+    })
+})
+
+document.addEventListener('mousemove', (event) => {
+    const mouseX = event.clientX
+    const mouseY = event.clientY
+
+    texts.forEach((frame) => {
+        if (frame.followCursor) {
+            const rect = text.getBoundingClientRect()
+            const offsetX = mouseX - (rect.left + rect.width / 2)
+            const offsetY = mouseY - (rect.top + rect.height / 2)
+
+            frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`
         }
     })
 })
