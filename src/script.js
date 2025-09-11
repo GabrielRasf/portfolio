@@ -256,36 +256,36 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* ===================================================
    ==================== TYPEWRITER ====================
    =================================================== */
-const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML | CSS | Javascript | ThreeJs | NodeJs | Blender";
-const el = document.getElementById("typewriter");
-let i = 0, forward = true;
+// const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML | CSS | Javascript | ThreeJs | NodeJs | Blender";
+// const el = document.getElementById("typewriter");
+// let i = 0, forward = true;
 
-// Função typewriter
-function typeWriter() {
-    if (forward) {
-        if (i < text.length) el.textContent += text.charAt(i++);
-    } else {
-        if (i > 0) el.textContent = text.substring(0, --i);
-        else forward = true;
-    }
+// // Função typewriter
+// function typeWriter() {
+//     if (forward) {
+//         if (i < text.length) el.textContent += text.charAt(i++);
+//     } else {
+//         if (i > 0) el.textContent = text.substring(0, --i);
+//         else forward = true;
+//     }
 
-    setTimeout(typeWriter, forward ? 100 : 50);
-}
+//     setTimeout(typeWriter, forward ? 100 : 50);
+// }
 
-// Observer para disparar quando a seção entrar na tela
-let typewriterStarted = false;
-const observerType = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !typewriterStarted) {
-            typewriterStarted = true;
-            setTimeout(typeWriter, 1000); // espera 1s antes de começar
-            obs.unobserve(entry.target); // dispara apenas uma vez
-        }
-    });
-}, { threshold: 0.5 });
+// // Observer para disparar quando a seção entrar na tela
+// let typewriterStarted = false;
+// const observerType = new IntersectionObserver((entries, obs) => {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting && !typewriterStarted) {
+//             typewriterStarted = true;
+//             setTimeout(typeWriter, 1000); // espera 1s antes de começar
+//             obs.unobserve(entry.target); // dispara apenas uma vez
+//         }
+//     });
+// }, { threshold: 0.5 });
 
-// Observa o elemento do typewriter
-observerType.observe(el);
+// // Observa o elemento do typewriter
+// observerType.observe(el);
 
 /* ===================================================
    ==================== HTML TEXT INTERACTION =========
@@ -353,16 +353,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionWorks = document.querySelector("#works");
     const works = document.querySelectorAll(".works");
 
-    if (!sectionWorks || works.length === 0) return; // segurança
+    if (!sectionWorks || works.length === 0) return;
 
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 works.forEach(el => el.classList.add("animate"));
-                obs.unobserve(sectionWorks); // dispara apenas uma vez
+                obs.unobserve(sectionWorks);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.35 });
 
     observer.observe(sectionWorks);
 });
