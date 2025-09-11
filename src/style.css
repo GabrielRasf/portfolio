@@ -35,7 +35,7 @@ a {
 
 .webgl {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -484,111 +484,107 @@ h1.h1-creative-developer span {
 }
 
 
-/* ============================== */
-/* SECTION 3
-/* ============================== */
-
+/* Section 3 - Grid */
 .groups-work {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    transition: transform 0.3s ease;
-    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* colunas responsivas */
+    gap: 2rem;
+    padding: 2rem;
+    width: 90%;
+    margin: 0 auto;
+    z-index: 2;
 }
 
-.groups-work:hover {
-    transform: scale(1.1) skewX(-15deg);
-    z-index: 3;
-}
-
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.works {
-    font-size: clamp(6rem, 12vw, 18rem);
-    font-family: 'Anton-Regular', sans-serif;
-    color: #bdaaa167;
-    margin: 0;
-    line-height: 0.3;
-
-    opacity: 0;
-    transform: translateX(-100px);
-    /* começa deslocado */
-    transition: transform 2s ease-out, opacity 2s ease-out;
-}
-
-/* Classe que dispara animação */
-.works.animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Delay progressivo */
-.indent-0.animate {
-    margin-left: 0;
-    transition-delay: 0.2s;
-}
-
-.indent-1.animate {
-    margin-left: 8rem;
-    transition-delay: 0.4s;
-}
-
-.indent-2.animate {
-    margin-left: 3rem;
-    transition-delay: 0.6s;
-}
-
-.indent-3.animate {
-    margin-left: 5rem;
-    transition-delay: 0.8s;
-}
-
-.indent-4.animate {
-    margin-left: 1rem;
-    transition-delay: 1s;
-}
-
-.work-frame {
-    background-color: #0e050100;
-    z-index: 1;
+/* Card individual */
+.group-item {
+    position: relative;
+    width: 100%;
+    padding-top: 133%; /* mantém proporção 3:4 (altura/width) */
+    background-color: black;
     border-radius: 1rem;
-    margin: 15vh auto;
+    overflow: hidden;
+    box-shadow: 0px 30px 30px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-    width: 80vw;
-    max-width: 1600px;
-    min-width: 300px;
+.group-item:hover {
+    transform: scale(1.05);
+}
 
-    height: 80vh;
-    max-height: 12000px;
-    min-height: 600px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Imagem do card */
+.group-item .imgbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
-.work-frame iframe {
+.group-item .imgbox img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
 }
 
-.work-1 {
-    height: 70vh;
-    width: 80vw;
+.group-item:hover .imgbox img {
+    opacity: 0; /* desaparece no hover */
 }
+
+/* Conteúdo do card */
+.group-item .content {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 80px;
+    background-color: white;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.group-item:hover .content {
+    height: 100%;
+    width: 100%;
+    left: 0;
+}
+
+.group-item .content h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin: 1rem 0;
+}
+
+.group-item .content p {
+    font-size: 1rem;
+    opacity: 0;
+    transition: 0.5s;
+    margin: 0.5rem 0;
+}
+
+.group-item .content a {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.group-item:hover .content p,
+.group-item:hover .content a {
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
 
 /* ============================== */
 /* CONTACTS RESPONSIVO */
