@@ -7,29 +7,29 @@ import waterFragmentShader from './shaders/water/fragment.glsl';
 /* ===================================================
    ==================== WarningOrientation ===========
    =================================================== */
-const warning = document.getElementById('landscape-warning');
+// const warning = document.getElementById('landscape-warning');
 
-function checkOrientation() {
-    if (window.innerWidth > window.innerHeight && window.innerWidth <= 1024) {
-        // celular em horizontal
-        warning.style.display = 'flex';
-    } else {
-        // celular em vertical ou desktop
-        warning.style.display = 'none';
-    }
-}
+// function checkOrientation() {
+//     if (window.innerWidth > window.innerHeight && window.innerWidth <= 1024) {
+//         // celular em horizontal
+//         warning.style.display = 'flex';
+//     } else {
+//         // celular em vertical ou desktop
+//         warning.style.display = 'none';
+//     }
+// }
 
-// Checa a orientação ao carregar a página
-window.addEventListener('load', checkOrientation);
+// // Checa a orientação ao carregar a página
+// window.addEventListener('load', checkOrientation);
 
-// Checa sempre que a tela é redimensionada ou rotacionada
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('orientationchange', checkOrientation);
+// // Checa sempre que a tela é redimensionada ou rotacionada
+// window.addEventListener('resize', checkOrientation);
+// window.addEventListener('orientationchange', checkOrientation);
 
-// Remove aviso ao clicar na tela
-window.addEventListener('click', () => {
-    warning.style.display = 'none';
-});
+// // Remove aviso ao clicar na tela
+// window.addEventListener('click', () => {
+//     warning.style.display = 'none';
+// });
 
 
 /* ===================================================
@@ -77,6 +77,7 @@ gui.domElement.style.top = 'auto';
 
 const debugObject = {};
 gui.close()
+
 /* ===================================================
    ==================== THREE.JS =====================
    =================================================== */
@@ -285,7 +286,6 @@ const observerType = new IntersectionObserver((entries, obs) => {
 
 // Observa o elemento do typewriter
 observerType.observe(el);
-
 
 /* ===================================================
    ==================== HTML TEXT INTERACTION =========

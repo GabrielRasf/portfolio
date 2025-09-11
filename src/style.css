@@ -35,16 +35,18 @@ a {
 
 .webgl {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
-    outline: none;
-    overflow-y: hidden;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    /* se não precisar interagir */
 }
 
 html,
 body {
     background-color: #0e0501;
-
+    overscroll-behavior: none
 }
 
 #landscape-warning {
@@ -299,7 +301,7 @@ h1 {
 .section-h1-front-end,
 .section-h1-creative-developer,
 .container-body {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -639,11 +641,12 @@ ul.smoky.hover-scale li:hover {
 
 @media (max-width: 768px) {
 
+
+
     .menu-left ul li:hover {
         transform: none;
         color: inherit;
         pointer-events: none;
-
     }
 
     .h1:hover {
@@ -699,6 +702,10 @@ ul.smoky.hover-scale li:hover {
         align-items: flex-start;
         margin-top: 4rem;
         gap: 4rem;
+    }
+
+    h1.h1-creative-developer span {
+        letter-spacing: 0.5rem;
     }
 
     .container {
