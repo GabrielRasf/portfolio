@@ -2,23 +2,6 @@
 /* GLOBAL */
 /* ============================== */
 
-/* Color Theme Swatches in Hex */
-.HAQQ:-Brand-Identity-&-Website-1-hex {
-    color: #D9CBBA;
-}
-
-.HAQQ:-Brand-Identity-&-Website-2-hex {
-    color: #776b65;
-}
-
-.HAQQ:-Brand-Identity-&-Website-3-hex {
-    color: #8C8480;
-}
-
-.HAQQ:-Brand-Identity-&-Website-4-hex {
-    color: #F2F2F2;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -32,13 +15,11 @@
 html {
     background-color: #a85c5c;
     scroll-behavior: smooth;
-
 }
 
 body {
     height: 100vh;
     overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 a {
@@ -53,14 +34,16 @@ a {
 
 .webgl {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     outline: none;
+    overflow-y: hidden;
 }
 
 html,
 body {
     background-color: #0e0501;
+
 }
 
 #landscape-warning {
@@ -299,43 +282,6 @@ li a:hover {
 /* SECTION 1 */
 /* ============================== */
 
-.marquee-vertical {
-    transform: rotate(30deg);
-    z-index: 1;
-    width: 200px;
-    height: 900px;
-    overflow: hidden;
-    /* border: 1px solid #ccc; */
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.marquee-content {
-    display: flex;
-    flex-direction: column;
-    animation: scroll-vertical 5s linear infinite;
-}
-
-.marquee-content p {
-    color: white;
-    margin: 1rem 0;
-    text-align: center;
-    font-size: 2rem;
-}
-
-@keyframes scroll-vertical {
-    0% {
-        transform: translateY(0);
-        /* começa fora da área inferior */
-    }
-
-    100% {
-        transform: translateY(-50%);
-        /* termina fora da área superior */
-    }
-}
-
 .container-body {
     display: flex;
     flex-direction: column;
@@ -454,7 +400,6 @@ h1.h1-creative-developer span {
     }
 }
 
-
 .about-frame {
     position: relative;
     z-index: -1;
@@ -472,7 +417,7 @@ h1.h1-creative-developer span {
     display: flex;
     justify-content: start;
     align-items: start;
-    overflow: hidden;
+    overflow-x: hidden;
     padding: 1.5rem;
 }
 
@@ -483,7 +428,6 @@ h1.h1-creative-developer span {
     font-family: monospace;
     color: #D9CBBA;
     overflow: hidden;
-    width: 0;
     animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
     box-sizing: border-box;
 }

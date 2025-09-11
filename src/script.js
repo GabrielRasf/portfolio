@@ -161,7 +161,11 @@ scene.add(particles);
 debugObject.depthColor = '#920C80';
 debugObject.surfaceColor = '#151c37';
 
-const waterGeometry = new THREE.PlaneGeometry(3, 2, 1024, 1024);
+// const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
+const isMobile = window.innerWidth <= 1024;
+const segments = isMobile ? 128 : 512; // mobile: 128, desktop: 512
+const waterGeometry = new THREE.PlaneGeometry(3, 2, segments, segments);
+
 const waterMaterial = new THREE.ShaderMaterial({
     vertexShader: waterVertexShader,
     fragmentShader: waterFragmentShader,
@@ -359,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.unobserve(sectionWorks); // dispara apenas uma vez
             }
         });
-    }, { threshold: 0.3 }); // 10% visível já dispara
+    }, { threshold: 0.3 });
 
     observer.observe(sectionWorks);
 });
