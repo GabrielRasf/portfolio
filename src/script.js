@@ -101,7 +101,7 @@ scene.add(camera);
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
 // ---- Controls ----
 const controls = new OrbitControls(camera, canvas);
@@ -125,7 +125,7 @@ window.addEventListener('resize', () => {
 /* ===================================================
    ==================== PARTICLES ====================
    =================================================== */
-const particlesCount = 2000;
+const particlesCount = 1200;
 const positions = new Float32Array(particlesCount * 3);
 const colors = new Float32Array(particlesCount * 3);
 
@@ -163,7 +163,7 @@ debugObject.surfaceColor = '#151c37';
 
 // const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
 const isMobile = window.innerWidth <= 1024;
-const segments = isMobile ? 128 : 512; // mobile: 128, desktop: 512
+const segments = isMobile ? 128 : 256; // mobile: 128, desktop: 512
 const waterGeometry = new THREE.PlaneGeometry(3, 2, segments, segments);
 
 const waterMaterial = new THREE.ShaderMaterial({
@@ -207,7 +207,6 @@ scene.add(water);
    =================================================== */
 let mouseX = 0;
 let mouseY = 0;
-particlesGeometry.attributes.position.needsUpdate = true;
 
 document.addEventListener('mousemove', (event) => {
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -256,7 +255,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* ===================================================
    ==================== TYPEWRITER ====================
    =================================================== */
-const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML CSS Javascript ThreeJs NodeJs Blender";
+const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML | CSS | Javascript | ThreeJs | NodeJs | Blender";
 const el = document.getElementById("typewriter");
 let i = 0, forward = true;
 
