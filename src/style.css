@@ -160,9 +160,7 @@ header,
 .menu-header li {
     position: relative;
     z-index: 10;
-    /* fica acima do canvas */
     pointer-events: auto;
-    /* garante que clique funcione */
 }
 
 .name {
@@ -197,7 +195,7 @@ h1.right {
 /* ============================== */
 .menu-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 0 2rem;
     margin-top: 0.6rem;
@@ -401,14 +399,14 @@ h1.h1-creative-developer span {
 
 /* Cards responsivos */
 .card-about {
-    border: 1px solid rgba(137, 139, 253, 0.137);
+    border: 1px solid rgba(255, 255, 255, 0.137);
     width: 22vw;
     max-width: 260px;
     min-width: 160px;
     height: auto;
     max-height: 400px;
     min-height: 200px;
-    background-color: #c07de738;
+    background-color: #6d12a123;
     border-radius: 1rem;
     cursor: pointer;
     padding: 1rem;
@@ -429,7 +427,7 @@ h1.h1-creative-developer span {
 
 .card-about .card-title-h3 {
     font-size: 2rem;
-    color: #3c3c77;
+    color: #bbbbff;
     margin-bottom: 0.5rem;
 }
 
@@ -440,6 +438,7 @@ h1.h1-creative-developer span {
 .card-about p {
     font-size: 1.5rem;
     line-height: 2;
+    color: #fdebff;
 }
 
 /* Posições diferentes para manter o desalinhamento natural */
