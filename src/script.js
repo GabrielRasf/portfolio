@@ -253,6 +253,31 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
+
+/* ===================================================
+   ==================== About cards ====================
+   =================================================== */
+const aboutSection = document.querySelector('.about-frame');
+const cards = document.querySelectorAll('.card-about');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, index * 200); // delay de 200ms entre cada card
+            });
+        }
+    });
+}, { threshold: 0.3 });
+
+observer.observe(aboutSection);
+
+
+
+
+
 /* ===================================================
    ==================== TYPEWRITER ====================
    =================================================== */

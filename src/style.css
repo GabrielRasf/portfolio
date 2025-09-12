@@ -20,6 +20,7 @@ html {
 body {
     overflow-y: scroll;
     scrollbar-width: none;
+    -ms-overflow-style: none;
     overflow-x: hidden;
 }
 
@@ -430,7 +431,16 @@ h1.h1-creative-developer span {
     flex-direction: column;
     justify-content: space-between;
     color: #3e362e;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
+
+    opacity: 0;
+    transform: translateY(100px);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.card-about.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card-about h3 {
@@ -439,8 +449,12 @@ h1.h1-creative-developer span {
     margin-bottom: 0.5rem;
 }
 
+.card-about:hover {
+    cursor: default;
+}
+
 .card-about p {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 2;
 }
 
@@ -448,22 +462,29 @@ h1.h1-creative-developer span {
 .card1 {
     transform: rotate(10deg);
     margin-top: 5rem;
+    font-weight: 700;
 
 }
 
 .card2 {
     transform: rotate(-12deg);
     margin-top: 2rem;
+    font-weight: 700;
+
 }
 
 .card3 {
     transform: rotate(8deg);
     margin-top: 6rem;
+    font-weight: 700;
+
 }
 
 .card4 {
     transform: rotate(-8deg);
     margin-top: 10rem;
+    font-weight: 700;
+
 }
 
 /* ============================== */
@@ -517,6 +538,17 @@ h1.h1-creative-developer span {
     transition-delay: 0.8s;
 }
 
+
+.group-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 150rem;
+}
+
 .group-item .imgbox {
     width: 100%;
     max-height: 60%;
@@ -527,6 +559,7 @@ h1.h1-creative-developer span {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1rem;
 }
 
 .group-item .imgbox img {
@@ -535,11 +568,30 @@ h1.h1-creative-developer span {
     height: auto;
     max-height: 100%;
     object-fit: cover;
+    border-radius: 1rem;
+
 }
 
-.group-item .content {
-    z-index: 4;
-    margin: 0 auto;
+.imgbox button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 0.9rem 1.5rem;
+    background-color: rgba(62, 54, 46, 0.9);
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.imgbox button:hover {
+    background-color: rgba(92, 83, 76, 0.9);
+    transform: translateX(-50%) translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* ============================== */
@@ -547,15 +599,16 @@ h1.h1-creative-developer span {
 /* ============================== */
 .container-contact {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     height: 100vh;
     width: 100%;
     position: relative;
-    gap: 2rem; 
+    gap: 2rem;
     z-index: 2;
 }
+
 ul.smoky {
     margin: 0 auto;
     padding: 0;
@@ -565,8 +618,9 @@ ul.smoky {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
+
 ul.smoky li {
     list-style: none;
     color: rgba(255, 255, 255, 0.5);
@@ -578,6 +632,7 @@ ul.smoky li {
         opacity 2s ease,
         filter 1.5s ease;
 }
+
 /* Hover ou efeito smoky */
 ul.smoky.animate li {
     opacity: 0;
@@ -693,6 +748,12 @@ ul.smoky.hover-scale li:hover {
         padding-top: 3rem;
         box-sizing: border-box;
         color: #1d1a19;
+    }
+
+    .imgbox button {
+        padding: 0.3rem 0.9rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
     }
 
     ul.smoky {
