@@ -7,14 +7,24 @@
     padding: 0;
     text-decoration: none;
     list-style: none;
-    color: inherit;
     font-size: 62.5%;
     cursor: default;
+    translate: no
+    
 }
 
 html {
-    scroll-behavior: smooth;
+    font-size: 62.5%;
 
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    /* Chrome, Safari, Edge */
+    -moz-text-size-adjust: 100%;
+    /* Firefox */
+    -ms-text-size-adjust: 100%;
+    /* Internet Explorer */
+    text-size-adjust: 100%;
+    /* Padrão */
 }
 
 body {
@@ -42,6 +52,10 @@ a {
     height: 100vh;
     pointer-events: none;
     z-index: 0;
+}
+
+canvas {
+    touch-action: none;
 }
 
 html,
@@ -74,50 +88,26 @@ body {
 /* Fonts */
 /* ============================== */
 @font-face {
-    font-family: 'Migha-Condensed';
-    src: url('../src/fonts/Migha-Condensed.woff2') format('woff2'),
-        url('../src/fonts/Migha-Condensed.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'Migha-LightExpanded';
-    src: url('../src/fonts/Migha-LightExpanded.woff2') format('woff2'),
-        url('../src/fonts/Migha-LightExpanded.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'NeutralFace';
-    src: url('../src/fonts/NeutralFace.woff2') format('woff2'),
-        url('../src/fonts/NeutralFace.woff') format('woff')
-}
-
-@font-face {
-    font-family: 'Zodiak-Regular';
-    src: url('../src/fonts/Zodiak-Regular.woff2') format('woff2'),
-        url('../src/fonts/Zodiak-Regular.woff') format('woff')
-}
-
-@font-face {
     font-family: 'MeshedDisplay-Thin';
-    src: url('../src/fonts/MeshedDisplay-Thin.woff2') format('woff2'),
-        url('../src/fonts/MeshedDisplay-Thin.woff') format('woff')
+    src: url('./src/fonts/MeshedDisplay-Thin.woff2') format('woff2'),
+        url('./src/fonts/MeshedDisplay-Thin.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'MeshedDisplay-ThinSlanted';
-    src: url('../src/fonts/MeshedDisplay-ThinSlanted.woff2') format('woff2'),
-        url('../src/fonts/MeshedDisplay-ThinSlanted.woff') format('woff')
+    src: url('./src/fonts/MeshedDisplay-ThinSlanted.woff2') format('woff2'),
+        url('./src/fonts/MeshedDisplay-ThinSlanted.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Satoshi-Regular';
-    src: url('../src/fonts/Satoshi-Regular.woff2') format('woff') url('../src/fonts/Satoshi-Regular.woff') format('woff2'),
+    src: url('./src/fonts/Satoshi-Regular.woff2') format('woff2'),
+        url('./src/fonts/Satoshi-Regular.woff') format('woff');
+    font-display: swap;
 }
 
-@font-face {
-    font-family: 'Anton-Regular';
-    src: url('../src/fonts/Anton-Regular.woff2') format('woff') url('../src/fonts/Anton-Regular.woff') format('woff2'),
-}
 
 /* ============================== */
 /* Preloader */
@@ -133,7 +123,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'MeshedDisplay-ThinSlanted';
     font-size: 12rem;
     z-index: 9999;
     flex-direction: column;
@@ -145,7 +134,7 @@ body {
 #content {
     display: none;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Satoshi-Regular';
 }
 
 /* ============================== */
@@ -175,8 +164,6 @@ header,
     pointer-events: auto;
     /* garante que clique funcione */
 }
-
-
 
 .name {
     font-size: 1.2rem;
@@ -251,8 +238,6 @@ li a {
     transition: transform 0.3s;
 }
 
-
-
 .words-menu-header:hover {
     transform: scale(1.4);
 }
@@ -325,7 +310,7 @@ h1.h1-creative-developer {
     font-family: 'Satoshi-Regular';
     color: #D9CBBA;
     position: relative;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     cursor: grabbing;
 }
 
@@ -416,26 +401,25 @@ h1.h1-creative-developer span {
 
 /* Cards responsivos */
 .card-about {
-    border: 1px solid rgba(92, 83, 76, 0.5);
+    border: 1px solid rgba(137, 139, 253, 0.137);
     width: 22vw;
     max-width: 260px;
     min-width: 160px;
     height: auto;
     max-height: 400px;
     min-height: 200px;
-    background-color: #d9cbc0b5;
+    background-color: #c07de738;
     border-radius: 1rem;
     cursor: pointer;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: #3e362e;
+    color: black;
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
 
     opacity: 0;
     transform: translateY(100px);
-    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
 }
 
 .card-about.show {
@@ -443,9 +427,9 @@ h1.h1-creative-developer span {
     transform: translateY(0);
 }
 
-.card-about h3 {
+.card-about .card-title-h3 {
     font-size: 2rem;
-    color: #2f2a25;
+    color: #3c3c77;
     margin-bottom: 0.5rem;
 }
 
@@ -502,7 +486,7 @@ h1.h1-creative-developer span {
 
 .groups-work p {
     font-size: 12rem;
-    color: rgba(255, 255, 255, 0.383);
+    color: rgba(190, 218, 255, 0.383);
     line-height: 0.3;
 
 }
@@ -602,7 +586,6 @@ h1.h1-creative-developer span {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height: 100vh;
     width: 100%;
     position: relative;
     gap: 2rem;
@@ -659,12 +642,18 @@ ul.smoky.hover-scale li:hover {
 
 @media (max-width: 768px) {
 
-
+    .webgl {
+        position: fixed;
+    }
 
     .menu-left ul li:hover {
         transform: none;
         color: inherit;
         pointer-events: none;
+    }
+
+    .menu-right ul {
+        gap: 0.1rem;
     }
 
     .h1:hover {
@@ -743,6 +732,15 @@ ul.smoky.hover-scale li:hover {
         top: 15rem;
         right: 3rem;
     }
+    .card1,
+    .card2,
+    .card3 {
+        margin: 1rem;
+    }
+    
+    .about-frame {
+        gap: 0;
+    }
 
     .card-about p {
         padding-top: 3rem;
@@ -762,8 +760,8 @@ ul.smoky.hover-scale li:hover {
     }
 
     ul.smoky li {
-        font-size: clamp(2rem, 10vw, 4rem);
-        /* se ajusta ao mobile */
+        font-size: clamp(1.5rem, 6vw, 3rem);
+        line-height: 1;
         letter-spacing: 0.2rem;
     }
 
@@ -771,7 +769,6 @@ ul.smoky.hover-scale li:hover {
         filter: blur(8px);
     }
 }
-
 
 /* Cards about me */
 /* Ajuste para telas médias */

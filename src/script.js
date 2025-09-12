@@ -87,9 +87,13 @@ const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 
 // ---- Sizes ----
-const sizes = { width: window.innerWidth, height: window.innerHeight };
+const sizes = {
+  width: window.visualViewport?.width ?? window.innerWidth,
+  height: window.visualViewport?.height ?? window.innerHeight
+};
 
 // ---- Camera ----
+
 const camera = new THREE.PerspectiveCamera(
     75,
     sizes.width / sizes.height,
@@ -103,6 +107,10 @@ const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+renderer.domElement.addEventListener("touchmove", (event) => {
+    event.preventDefault()
+}, { passive: false })
 
 // ---- Controls ----
 const controls = new OrbitControls(camera, canvas);
