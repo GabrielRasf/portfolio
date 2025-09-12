@@ -563,12 +563,13 @@ h1.h1-creative-developer span {
     transform: translateX(-50%);
 
     padding: 0.9rem 1.5rem;
-    background-color: rgba(62, 54, 46, 0.9);
-    color: #fff;
-    border: none;
+    background-color: rgba(62, 54, 46, 0.425);
+    color: #979797;
+    border: 1px solid rgb(78, 78, 78);
     border-radius: 0.6rem;
     cursor: pointer;
     font-size: 1.2rem;
+    font-weight: 700;
     transition: all 0.3s ease;
 }
 
