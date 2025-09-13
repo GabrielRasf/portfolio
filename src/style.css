@@ -268,7 +268,7 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-left: 2rem;
+    margin-left: 1rem;
     gap: 1rem;
 }
 
@@ -402,11 +402,12 @@ h1.h1-creative-developer span {
     width: 22vw;
     max-width: 260px;
     min-width: 160px;
-    height: auto;
-    max-height: 400px;
+
+    max-height: 450px;
     min-height: 200px;
-    background-color: #6d12a123;
     border-radius: 1rem;
+        box-sizing: border-box;
+    hyphens: auto;
     cursor: pointer;
     padding: 1rem;
     display: flex;
@@ -459,7 +460,7 @@ h1.h1-creative-developer span {
     transform: rotate(8deg);
     margin-top: 6rem;
     font-weight: 700;
-
+    
 }
 
 /* ============================== */
@@ -518,7 +519,8 @@ h1.h1-creative-developer span {
     justify-content: center;
     align-items: center;
     width: auto;
-    max-height: 90vh; /* controla altura no viewport */
+    max-height: 90vh;
+    /* controla altura no viewport */
 }
 
 .group-item .imgbox {
@@ -716,8 +718,8 @@ ul.smoky.hover-scale li:hover {
 
     .card-about {
         box-sizing: border-box;
-        width: 15rem;
-        max-height: 45rem;
+        width: 200px;
+        height: 600px;
         top: 15rem;
         right: 3rem;
     }
@@ -728,6 +730,10 @@ ul.smoky.hover-scale li:hover {
         margin: 1rem;
     }
 
+    .card3 {
+        margin-bottom: 3rem;
+    }
+
     .about-frame {
         gap: 0;
     }
@@ -736,6 +742,7 @@ ul.smoky.hover-scale li:hover {
         padding-top: 3rem;
         box-sizing: border-box;
         color: #fdefff;
+        font-size: 1.3rem;
     }
 
     .imgbox button {
