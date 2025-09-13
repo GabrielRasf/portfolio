@@ -427,7 +427,7 @@ h1.h1-creative-developer span {
 
 .card-about .card-title-h3 {
     font-size: 2rem;
-    color: #bbbbff;
+    color: #dcdcff;
     margin-bottom: 0.5rem;
 }
 
@@ -435,10 +435,10 @@ h1.h1-creative-developer span {
     cursor: default;
 }
 
-.card-about p {
+.card-about>p {
     font-size: 1.5rem;
     line-height: 2;
-    color: #fdebff;
+    color: #fdefff;
 }
 
 /* Posições diferentes para manter o desalinhamento natural */
@@ -463,12 +463,7 @@ h1.h1-creative-developer span {
 
 }
 
-.card4 {
-    transform: rotate(-8deg);
-    margin-top: 10rem;
-    font-weight: 700;
 
-}
 
 /* ============================== */
 /* SECTION 3
@@ -533,6 +528,7 @@ h1.h1-creative-developer span {
 }
 
 .group-item .imgbox {
+    max-width: 840px;
     width: 100%;
     max-height: 60%;
     overflow: hidden;
@@ -562,9 +558,9 @@ h1.h1-creative-developer span {
     transform: translateX(-50%);
 
     padding: 0.9rem 1.5rem;
-    background-color: rgba(62, 54, 46, 0.425);
-    color: #979797;
-    border: 1px solid rgb(78, 78, 78);
+    background-color: rgba(62, 54, 46, 0.733);
+    color: #ffffff;
+    border: 1px solid rgba(48, 48, 48, 0);
     border-radius: 0.6rem;
     cursor: pointer;
     font-size: 1.2rem;
@@ -745,7 +741,7 @@ ul.smoky.hover-scale li:hover {
     .card-about p {
         padding-top: 3rem;
         box-sizing: border-box;
-        color: #1d1a19;
+        color: #fdefff;
     }
 
     .imgbox button {
