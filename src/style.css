@@ -10,7 +10,6 @@
     font-size: 62.5%;
     cursor: default;
     translate: no
-    
 }
 
 html {
@@ -482,7 +481,6 @@ h1.h1-creative-developer span {
     font-size: 12rem;
     color: rgba(190, 218, 255, 0.383);
     line-height: 0.3;
-
 }
 
 .works {
@@ -516,21 +514,19 @@ h1.h1-creative-developer span {
     transition-delay: 0.8s;
 }
 
-
 .group-item {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 2rem auto;
-    width: 90%;
+    margin: 2rem;
     max-width: 150rem;
 }
 
 .group-item .imgbox {
-    max-width: 840px;
+
     width: 100%;
-    max-height: 60%;
+    max-height: 540px;
     overflow: hidden;
     position: relative;
     z-index: 5;
@@ -543,9 +539,8 @@ h1.h1-creative-developer span {
 
 .group-item .imgbox img {
     width: auto;
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
-    max-height: 100%;
     object-fit: cover;
     border-radius: 1rem;
 
@@ -728,12 +723,13 @@ ul.smoky.hover-scale li:hover {
         top: 15rem;
         right: 3rem;
     }
+
     .card1,
     .card2,
     .card3 {
         margin: 1rem;
     }
-    
+
     .about-frame {
         gap: 0;
     }
