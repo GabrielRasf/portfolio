@@ -137,35 +137,35 @@ window.addEventListener('resize', () => {
 /* ===================================================
    ==================== PARTICLES ====================
    =================================================== */
-const particlesCount = 1200;
-const positions = new Float32Array(particlesCount * 3);
-const colors = new Float32Array(particlesCount * 3);
+// const particlesCount = 1200;
+// const positions = new Float32Array(particlesCount * 3);
+// const colors = new Float32Array(particlesCount * 3);
 
-for (let i = 0; i < particlesCount; i++) {
-    positions[i * 3 + 0] = (Math.random() - 0.5) * 15;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+// for (let i = 0; i < particlesCount; i++) {
+//     positions[i * 3 + 0] = (Math.random() - 0.5) * 15;
+//     positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+//     positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
 
-    colors[i * 3 + 0] = Math.random() * 0.5;
-    colors[i * 3 + 1] = Math.random() * 0.5;
-    colors[i * 3 + 2] = Math.random() * 0.5;
-}
+//     colors[i * 3 + 0] = Math.random() * 0.5;
+//     colors[i * 3 + 1] = Math.random() * 0.5;
+//     colors[i * 3 + 2] = Math.random() * 0.5;
+// }
 
-const particlesGeometry = new THREE.BufferGeometry();
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+// const particlesGeometry = new THREE.BufferGeometry();
+// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+// particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-const particlesMaterial = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: 0.003,
-    sizeAttenuation: true,
-    transparent: true,
-    alphaTest: 0.01,
-    vertexColors: true
-});
+// const particlesMaterial = new THREE.PointsMaterial({
+//     color: 0xffffff,
+//     size: 0.003,
+//     sizeAttenuation: true,
+//     transparent: true,
+//     alphaTest: 0.01,
+//     vertexColors: true
+// });
 
-const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particles);
+// const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+// scene.add(particles);
 
 /* ===================================================
    ==================== WATER ========================
