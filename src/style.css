@@ -302,7 +302,7 @@ h1.h1-front-end:hover {
 
 /* Maior tamanho */
 h1.h1-creative-developer {
-    margin: 4rem 0 16rem 0;
+    margin: 4rem 0 18rem 0;
     font-size: clamp(12rem, 3vw, 16rem);
     font-family: 'Satoshi-Regular';
     color: #D9CBBA;
@@ -342,7 +342,7 @@ h1.h1-creative-developer span {
 }
 
 .marquee__content {
-    margin-bottom: 15rem;
+    margin-bottom: 10rem;
     display: inline-block;
     animation: marquee 20s linear infinite;
 }
@@ -367,7 +367,7 @@ h1.h1-creative-developer span {
     position: relative;
     z-index: 1;
     border-radius: 1rem;
-    margin: 5vh auto;
+    margin: 0 auto 20rem auto;
 
     width: 80vw;
     max-width: 1500px;
@@ -398,15 +398,15 @@ h1.h1-creative-developer span {
 
 /* Cards responsivos */
 .card-about {
-    border: 1px solid rgba(255, 255, 255, 0.137);
+    border: 1px solid rgba(255, 255, 255, 0.466);
     width: 22vw;
     max-width: 260px;
     min-width: 160px;
 
-    max-height: 450px;
-    min-height: 200px;
+    max-height: 600px;
+    min-height: 250px;
     border-radius: 1rem;
-        box-sizing: border-box;
+    box-sizing: border-box;
     hyphens: auto;
     cursor: pointer;
     padding: 1rem;
@@ -417,7 +417,7 @@ h1.h1-creative-developer span {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
 
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(-300px);
 }
 
 .card-about.show {
@@ -429,6 +429,10 @@ h1.h1-creative-developer span {
     font-size: 2rem;
     color: #dcdcff;
     margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.466);
+    padding: 0.5rem;
+    border-radius: 1rem;
+
 }
 
 .card-about:hover {
@@ -439,19 +443,22 @@ h1.h1-creative-developer span {
     font-size: 1.5rem;
     line-height: 2;
     color: #fdefff;
+    border: 1px solid rgba(255, 255, 255, 0.466);
+    padding: 0.5rem;
+    border-radius: 1rem;
+
 }
 
 /* Posições diferentes para manter o desalinhamento natural */
 .card1 {
     transform: rotate(10deg);
-    margin-top: 5rem;
     font-weight: 700;
 
 }
 
 .card2 {
     transform: rotate(-12deg);
-    margin-top: 2rem;
+    margin-top: 20rem;
     font-weight: 700;
 
 }
@@ -460,7 +467,7 @@ h1.h1-creative-developer span {
     transform: rotate(8deg);
     margin-top: 6rem;
     font-weight: 700;
-    
+
 }
 
 /* ============================== */
@@ -638,10 +645,10 @@ ul.smoky.hover-scale li:hover {
     }
 
     .section-1 {
-    display: flex;
-    height: 100vh;
-    align-items: flex-start;
-}
+        display: flex;
+        height: 100vh;
+        align-items: flex-start;
+    }
 
     .menu-left ul li:hover {
         transform: none;

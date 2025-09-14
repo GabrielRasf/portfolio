@@ -287,10 +287,6 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(aboutSection);
 
-
-
-
-
 /* ===================================================
    ==================== TYPEWRITER ====================
    =================================================== */
@@ -384,6 +380,7 @@ document.addEventListener('mousemove', (event) => {
 });
 
 
+
 /* ===================================================
    ==================== WORKS ANIMATION===============
    =================================================== */
@@ -400,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.unobserve(sectionWorks);
             }
         });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.3 });
 
     observer.observe(sectionWorks);
 });
