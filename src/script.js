@@ -103,7 +103,10 @@ camera.position.set(0, 0, 1);
 scene.add(camera);
 
 // ---- Renderer ----
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+const renderer = new THREE.WebGLRenderer({ 
+    canvas, 
+    alpha: true
+});
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -191,7 +194,9 @@ const waterMaterial = new THREE.ShaderMaterial({
         uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
         uColorOffset: { value: 0.925 },
         uColorMultiplier: { value: 1 }
-    }
+    },
+        wireframe: true 
+
 });
 
 gui.addColor(debugObject, 'depthColor').onChange(() => waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor));
