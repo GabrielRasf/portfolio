@@ -352,6 +352,35 @@ if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
         });
     });
 }
+
+/* ===================================================
+   ==================== Marquee show ============
+   =================================================== */
+   document.addEventListener("DOMContentLoaded", () => {
+    const marquee = document.querySelector(".marquee");
+    const section2 = document.querySelector(".section-2");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    marquee.classList.add("show");
+                } else {
+                    marquee.classList.remove("show");
+                }
+            });
+        },
+        {
+            root: null, // viewport
+            threshold: 0.5 // 50% visível
+        }
+    );
+
+    observer.observe(section2);
+});
+
+
+
 /* ===================================================
    ==================== FRAMES INTERACTION ============
    =================================================== */
