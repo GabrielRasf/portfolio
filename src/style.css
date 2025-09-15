@@ -710,7 +710,7 @@ ul.smoky.hover-scale li:hover {
 
     h1.h1-brazillian {
         margin: 8rem 0;
-        font-size: clamp(2rem, 3vw, 4rem);
+        font-size: clamp(4rem, 3vw, 6rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 1rem;
         color: #D9CBBA;
@@ -719,7 +719,7 @@ ul.smoky.hover-scale li:hover {
     h1.h1-front-end {
         margin: 4rem 0;
         justify-content: space-between;
-        font-size: clamp(3rem, 4vw, 5rem);
+        font-size: clamp(5rem, 4vw, 8rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 2rem;
         color: #D9CBBA;
@@ -727,7 +727,7 @@ ul.smoky.hover-scale li:hover {
 
     h1.h1-creative-developer {
         margin: 4rem 0 8rem 0;
-        font-size: clamp(3.5rem, 4.5vw, 5.5rem);
+        font-size: clamp(6rem, 4.5vw, 10rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 2.1rem;
         color: #D9CBBA;
@@ -847,5 +847,37 @@ ul.smoky.hover-scale li:hover {
         width: 80vw;
         height: 25vh;
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.h1-brazillian {
+        margin: 8rem 0;
+        font-size: clamp(3rem, 3vw, 5rem);
+        font-family: 'Satoshi-Regular';
+        letter-spacing: 1rem;
+        color: #D9CBBA;
+    }
+
+    h1.h1-front-end {
+        margin: 4rem 0;
+        justify-content: space-between;
+        font-size: clamp(3.5rem, 4vw, 6rem);
+        font-family: 'Satoshi-Regular';
+        letter-spacing: 2rem;
+        color: #D9CBBA;
+    }
+
+    h1.h1-creative-developer {
+        margin: 4rem 0 8rem 0;
+        font-size: clamp(4rem, 4.5vw, 7rem);
+        font-family: 'Satoshi-Regular';
+        letter-spacing: 2.1rem;
+        color: #D9CBBA;
+        position: relative;
+        word-break: break-word;
+        transition: transform 0.2s ease-out;
+        display: flex;
+        align-items: flex-start;
     }
 }
