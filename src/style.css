@@ -13,8 +13,8 @@
 }
 
 html {
-    font-size: 62.5%;
 
+    font-size: 62.5%;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -22,8 +22,10 @@ html {
     text-size-adjust: 100%;
 }
 
-.section-2, .next-section {
-    min-height: 100vh; /* ocupa a tela inteira */
+.section-2,
+.next-section {
+    min-height: 100vh;
+    /* ocupa a tela inteira */
 }
 
 body {
@@ -44,6 +46,7 @@ a {
 }
 
 .webgl {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -54,12 +57,13 @@ a {
 }
 
 canvas {
+
     touch-action: none;
 }
 
 html,
 body {
-    background-color: #1b0a02;
+    background-color: #5c534c;
     overscroll-behavior: none;
     overflow-x: hidden;
 }
@@ -145,7 +149,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0);
     z-index: 1;
 }
 
@@ -160,6 +163,7 @@ header,
     position: relative;
     z-index: 10;
     pointer-events: auto;
+
 }
 
 .name {
@@ -169,7 +173,7 @@ header,
 .hr {
     border: none;
     height: 0.1rem;
-    background-color: rgba(218, 218, 218, 0.329);
+    background-color: #919191a9;
     z-index: 3;
 }
 
@@ -277,12 +281,15 @@ h1.h1-brazillian {
     font-size: clamp(6rem, 3vw, 8rem);
     font-family: 'Satoshi-Regular';
     letter-spacing: 1rem;
-    color: #D9CBBA;
+    color: #d9cbba;
     cursor: grabbing;
+    transition: transform 1s ease;
+
 }
 
 h1.h1-brazillian:hover {
-    color: #8C8480;
+    color: #d9cbba54;
+    -webkit-text-stroke: 2px #1a1a1a;
 }
 
 
@@ -294,10 +301,13 @@ h1.h1-front-end {
     letter-spacing: 2rem;
     color: #D9CBBA;
     cursor: grabbing;
+    transition: transform 1s ease;
+
 }
 
 h1.h1-front-end:hover {
-    color: #8C8480;
+    color: #d9cbba54;
+    -webkit-text-stroke: 2px #1a1a1a;
 }
 
 /* Maior tamanho */
@@ -309,10 +319,12 @@ h1.h1-creative-developer {
     position: relative;
     /* white-space: nowrap; */
     cursor: grabbing;
+
 }
 
 h1.h1-creative-developer:hover {
-    color: #8C8480;
+    color: #d9cbba54;
+    -webkit-text-stroke: 2px #1a1a1a;
 }
 
 h1.h1-creative-developer span {
@@ -351,6 +363,7 @@ h1.h1-creative-developer span {
 .marquee__content span {
     display: inline-block;
     padding-right: 2rem;
+    font-size: 24rem;
     /* espaçamento entre repetições */
 }
 
@@ -402,77 +415,96 @@ h1.h1-creative-developer span {
 }
 
 /* Cards responsivos */
+/* ============================== */
+/* CARDS ABOUT - MELHORADOS */
+/* ============================== */
+
 .card-about {
     border: 1px solid rgba(255, 255, 255, 0.466);
-    width: 22vw;
-    max-width: 260px;
-    min-width: 160px;
+    width: 25vw;
+    /* ligeiramente maior */
+    max-width: 300px;
+    min-width: 250px;
 
-    max-height: 600px;
-    min-height: 250px;
+    max-height: 650px;
+    min-height: 300px;
     border-radius: 1rem;
     box-sizing: border-box;
     hyphens: auto;
     cursor: pointer;
-    padding: 1rem;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: black;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
+    color: #ffffff;
+    background-color: rgba(29, 29, 29, 0.6);
+    /* leve fundo para contraste */
 
+    /* Transições */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
+
+    /* Inicial */
     opacity: 0;
-    transform: translateY(-300px);
+    transform: translateY(-250px);
 }
 
+/* Cards aparecendo na tela */
 .card-about.show {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Título do card */
 .card-about .card-title-h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    /* maior destaque */
+    font-weight: 700;
     color: #dcdcff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.466);
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-radius: 1rem;
-
+    text-align: center;
 }
 
-.card-about:hover {
-    cursor: default;
-}
-
+/* Texto do card */
 .card-about>p {
-    font-size: 1.5rem;
-    line-height: 2;
+    font-size: 1.9rem;
+    /* levemente maior */
+    line-height: 2.2;
     color: #fdefff;
     border: 1px solid rgba(255, 255, 255, 0.466);
-    padding: 0.5rem;
+    padding: 0.6rem;
     border-radius: 1rem;
-
+    text-align: center;
 }
 
-/* Posições diferentes para manter o desalinhamento natural */
+/* Hover */
+.card-about:hover {
+    cursor: default;
+    transform: scale(1.25) rotate(0deg);
+    /* aumenta e centraliza */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Posições diferentes para desalinhamento natural */
 .card1 {
+    margin-top: 3rem;
     transform: rotate(10deg);
     font-weight: 700;
-
 }
 
 .card2 {
     transform: rotate(-12deg);
-    margin-top: 20rem;
+    margin-top: 18rem;
     font-weight: 700;
-
 }
 
 .card3 {
     transform: rotate(8deg);
-    margin-top: 6rem;
+    margin-top: 8rem;
     font-weight: 700;
-
 }
 
 /* ============================== */
@@ -486,8 +518,8 @@ h1.h1-creative-developer span {
 }
 
 .groups-work p {
-    font-size: 12rem;
-    color: rgba(190, 218, 255, 0.383);
+    font-size: 21rem;
+    color: #d9cbbaa6;
     line-height: 0.3;
 }
 
@@ -739,7 +771,8 @@ ul.smoky.hover-scale li:hover {
     }
 
     .marquee__content>span {
-        font-size: 5rem;
+        margin-top: 5rem;
+        font-size: 9rem;
     }
 
     .card-about {
@@ -748,6 +781,7 @@ ul.smoky.hover-scale li:hover {
         height: 600px;
         top: 15rem;
         right: 3rem;
+        pointer-events: none;
     }
 
     .card1,
@@ -768,7 +802,11 @@ ul.smoky.hover-scale li:hover {
         padding-top: 3rem;
         box-sizing: border-box;
         color: #fdefff;
-        font-size: 1.3rem;
+        font-size: 1.6rem;
+    }
+
+    .groups-work p {
+        font-size: 12rem;
     }
 
     .imgbox button {

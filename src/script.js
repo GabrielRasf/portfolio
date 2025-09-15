@@ -170,8 +170,8 @@ window.addEventListener('resize', () => {
 /* ===================================================
    ==================== WATER ========================
    =================================================== */
-debugObject.depthColor = '#920C80';
-debugObject.surfaceColor = '#151c37';
+debugObject.depthColor = '#b4b4b4d0';
+debugObject.surfaceColor = '#920C80';
 
 // const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
 const isMobile = window.innerWidth <= 1024;
