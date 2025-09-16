@@ -171,12 +171,12 @@ window.addEventListener('resize', () => {
    ==================== WATER ========================
    =================================================== */
 debugObject.depthColor = '#b4b4b4d0';
-debugObject.surfaceColor = '#920C80';
+debugObject.surfaceColor = '#b4b4b4d0';
 
 // const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
 const isMobile = window.innerWidth <= 1024;
 const segments = isMobile ? 128 : 256; // mobile: 128, desktop: 512
-const waterGeometry = new THREE.PlaneGeometry(3, 2, segments, segments);
+const waterGeometry = new THREE.PlaneGeometry(4, 3, segments, segments);
 
 const waterMaterial = new THREE.ShaderMaterial({
     vertexShader: waterVertexShader,
@@ -191,7 +191,7 @@ const waterMaterial = new THREE.ShaderMaterial({
         uSmallWavesSpeed: { value: 0.2 },
         uSmallIterations: { value: 3.6 },
         uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
-        uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
+        // uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
         uColorOffset: { value: 0.925 },
         uColorMultiplier: { value: 1 }
     },

@@ -235,7 +235,7 @@ li a {
     min-width: 6rem;
     cursor: grabbing;
     font-weight: 600;
-    color: #D9CBBA;
+    color: #fda63c;
     transition: transform 0.3s;
 }
 
@@ -288,7 +288,7 @@ h1.h1-brazillian {
 }
 
 h1.h1-brazillian:hover {
-    color: #d9cbba54;
+    color: #fda63c;
     -webkit-text-stroke: 2px #1a1a1a;
 }
 
@@ -306,7 +306,7 @@ h1.h1-front-end {
 }
 
 h1.h1-front-end:hover {
-    color: #d9cbba54;
+    color: #fda63c;
     -webkit-text-stroke: 2px #1a1a1a;
 }
 
@@ -323,7 +323,7 @@ h1.h1-creative-developer {
 }
 
 h1.h1-creative-developer:hover {
-    color: #d9cbba54;
+    color: #fda63c;
     -webkit-text-stroke: 2px #1a1a1a;
 }
 
@@ -379,6 +379,13 @@ h1.h1-creative-developer span {
     100% {
         transform: translateX(-50%);
     }
+}
+
+.hr-orange {
+    border: none;
+    height: 0.1rem;
+    z-index: 3;
+    background-color: #fda63c;
 }
 
 .about-frame {
@@ -482,8 +489,7 @@ h1.h1-creative-developer span {
 /* Hover */
 .card-about:hover {
     cursor: default;
-    transform: scale(1.25) rotate(0deg);
-    /* aumenta e centraliza */
+    transform: scale(1.15) rotate(0deg);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
@@ -529,9 +535,12 @@ h1.h1-creative-developer span {
     transition: transform 0.7s ease, opacity 0.7s ease;
 }
 
-.works:nth-child(5) {
-    margin-bottom: 6rem;
+.works-orange>p {
+    color: #fda63c;
 }
+
+.works:nth-child(5) {
+margin-bottom: 6rem;}
 
 .works.animate {
     opacity: 1;
@@ -853,7 +862,7 @@ ul.smoky.hover-scale li:hover {
 @media (max-width: 480px) {
     h1.h1-brazillian {
         margin: 8rem 0;
-        font-size: clamp(3rem, 3vw, 5rem);
+        font-size: clamp(2.5rem, 3vw, 5rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 1rem;
         color: #D9CBBA;
@@ -862,7 +871,7 @@ ul.smoky.hover-scale li:hover {
     h1.h1-front-end {
         margin: 4rem 0;
         justify-content: space-between;
-        font-size: clamp(3.5rem, 4vw, 6rem);
+        font-size: clamp(3rem, 4vw, 6rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 2rem;
         color: #D9CBBA;
@@ -870,7 +879,7 @@ ul.smoky.hover-scale li:hover {
 
     h1.h1-creative-developer {
         margin: 4rem 0 8rem 0;
-        font-size: clamp(4rem, 4.5vw, 7rem);
+        font-size: clamp(3.5rem, 4.5vw, 7rem);
         font-family: 'Satoshi-Regular';
         letter-spacing: 2.1rem;
         color: #D9CBBA;
