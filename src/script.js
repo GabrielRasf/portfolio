@@ -326,7 +326,7 @@ observer.observe(aboutSection);
    =================================================== */
 // Só habilita o efeito em telas grandes e dispositivos com hover
 if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
-    const texts = document.querySelectorAll('.h1-brazillian, .h1-front-end, .h1-creative-developer, .menu-header li');
+    const texts = document.querySelectorAll('.h1-brazillian, .h1-front-end, .h1-creative-developer, .menu-header li, .works-orange');
 
     texts.forEach(text => {
         text.style.position = 'relative';

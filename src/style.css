@@ -319,7 +319,6 @@ h1.h1-creative-developer {
     position: relative;
     /* white-space: nowrap; */
     cursor: grabbing;
-
 }
 
 h1.h1-creative-developer:hover {
@@ -494,6 +493,10 @@ h1.h1-creative-developer span {
     z-index: 1;
 }
 
+.card-about:hover h3 {
+    color: #fda63c;
+}
+
 /* Posições diferentes para desalinhamento natural */
 .card1 {
     margin-top: 3rem;
@@ -521,6 +524,7 @@ h1.h1-creative-developer span {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 0.3rem;
 }
 
 .groups-work p {
@@ -536,11 +540,22 @@ h1.h1-creative-developer span {
 }
 
 .works-orange>p {
-    color: #fda63c;
+    letter-spacing: 1.4rem;
+    cursor: grabbing;
+    color: #d9cbbaa6;
+    font-size: 24rem;  
+    height: 10rem;
 }
 
+.works-orange>p:hover {
+    color: #fda63c;
+    -webkit-text-stroke: 2px #1a1a1a;
+}
+
+
 .works:nth-child(5) {
-margin-bottom: 6rem;}
+    margin-bottom: 6rem;
+}
 
 .works.animate {
     opacity: 1;
@@ -617,7 +632,8 @@ margin-bottom: 6rem;}
 }
 
 .imgbox button:hover {
-    background-color: rgba(92, 83, 76, 0.9);
+    color: black;
+    background-color: #fda63c;
     transform: translateX(-50%) translateY(-3px) scale(1.05);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -669,7 +685,7 @@ ul.smoky.animate li {
 /* Hover scale separado */
 ul.smoky.hover-scale li:hover {
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.747);
+    color: #fda63c;
     transform: scale(1.1);
 }
 
