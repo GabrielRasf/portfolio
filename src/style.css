@@ -370,6 +370,10 @@ h1.h1-creative-developer span {
     opacity: 1;
 }
 
+.orange {
+    color: #fda63c
+}
+
 @keyframes marquee {
     0% {
         transform: translateX(0%);
@@ -551,6 +555,7 @@ h1.h1-creative-developer span {
     color: #fda63c;
     -webkit-text-stroke: 2px #1a1a1a;
 }
+
 
 
 .works:nth-child(5) {

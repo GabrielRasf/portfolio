@@ -357,14 +357,17 @@ if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
 /* ===================================================
    ==================== Marquee show ============
    =================================================== */
-   document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const marquee = document.querySelector(".marquee");
     const section2 = document.querySelector(".section-2");
+
+    // Define threshold baseado na largura da tela
+    const thresholdValue = window.innerWidth <= 768 ? 0.3 : 0.5;
 
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+                if (entry.isIntersecting && entry.intersectionRatio >= thresholdValue) {
                     marquee.classList.add("show");
                 } else {
                     marquee.classList.remove("show");
@@ -373,12 +376,13 @@ if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
         },
         {
             root: null, // viewport
-            threshold: 0.5 // 50% visível
+            threshold: thresholdValue
         }
     );
 
     observer.observe(section2);
 });
+
 
 
 
