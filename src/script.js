@@ -170,8 +170,8 @@ window.addEventListener('resize', () => {
 /* ===================================================
    ==================== WATER ========================
    =================================================== */
-debugObject.depthColor = '#b4b4b4d0';
-debugObject.surfaceColor = '#b4b4b4d0';
+debugObject.depthColor = '#d9d9d9d0';
+debugObject.surfaceColor = '#ffbe6f';
 
 // const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
 const isMobile = window.innerWidth <= 1024;
@@ -183,19 +183,20 @@ const waterMaterial = new THREE.ShaderMaterial({
     fragmentShader: waterFragmentShader,
     uniforms: {
         uTime: { value: 0 },
-        uBigWavesElevation: { value: 0.2 },
+        uBigWavesElevation: { value: 0.05 },
         uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
         uBigWavesSpeed: { value: 0.55 },
         uSmallWavesElevation: { value: 0.15 },
         uSmallWavesFrequency: { value: 3 },
         uSmallWavesSpeed: { value: 0.2 },
-        uSmallIterations: { value: 3.6 },
-        uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
-        // uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
-        uColorOffset: { value: 0.925 },
-        uColorMultiplier: { value: 1 }
+        uSmallIterations: { value: 1.6 },
+        uDepthColor: { value: new THREE.Color(debugObject.depthColor).multiplyScalar(0.1) },
+        uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor).multiplyScalar(0.2)  },
+        uColorOffset: { value: 0.55 },
+        uColorMultiplier: { value: 1.5 }
     },
-        wireframe: true 
+        wireframe: true, 
+        transparent: true
 
 });
 
@@ -331,7 +332,7 @@ if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
     texts.forEach(text => {
         text.style.position = 'relative';
         text.style.display = 'inline-block';
-        text.style.transition = 'transform 0.05s';
+        text.style.transition = 'transform 0.08s';
 
         text.addEventListener('mouseenter', () => text.followCursor = true);
         text.addEventListener('mouseleave', () => {
@@ -363,7 +364,7 @@ if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
                     marquee.classList.add("show");
                 } else {
                     marquee.classList.remove("show");
