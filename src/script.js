@@ -93,6 +93,9 @@ function isSafeAssetUrl(value) {
 }
 
 function projectMedia(project) {
+    if (project.video && isSafeAssetUrl(project.video)) {
+        return `<video src="${escapeHtml(project.video)}" autoplay muted loop playsinline preload="metadata" aria-label="${escapeHtml(project.name)} preview"></video>`
+    }
     if (project.image && isSafeAssetUrl(project.image)) {
         return `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.name)} preview" width="1600" height="1000">`
     }
@@ -101,12 +104,14 @@ function projectMedia(project) {
 }
 
 function projectActions(project) {
+    const links = []
     if (isHttpUrl(project.demo)) {
-        return `<a class="button" href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">View project</a>`
+        links.push(`<a class="button" href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">View project</a>`)
     }
     if (isHttpUrl(project.github)) {
-        return `<a class="button" href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">View code</a>`
+        links.push(`<a class="button" href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">View code</a>`)
     }
+    if (links.length) return links.join('')
     if (project.status === 'Private') {
         return `<p class="private">Private — no public demo</p>`
     }

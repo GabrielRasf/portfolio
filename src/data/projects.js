@@ -1,8 +1,10 @@
+import flowWorkImage from '../images/flowWork.png'
 import luanaImage from '../images/luanaCatarinozi.png'
 import natarajImage from '../images/natarajMassoterapia.webp'
 import noteScanImage from '../images/noteScan.png'
 import numeLabImage from '../images/numeLab.png'
 import techFinanceImage from '../images/techFinanceBlog.png'
+import transcriptorVideo from '../videos/transcriptor.mp4'
 
 export const ogImage = techFinanceImage
 
@@ -19,7 +21,9 @@ export const categories = [
 /**
  * Add a project by appending an object. category is a single id from the list above.
  * Within each category, this array order is kept.
- * github must be a verified repository URL, or an empty string.
+ * github must be a verified public repository URL, or an empty string. Private or local projects never get one.
+ * video takes the place of image as the cover. Projects without public code keep video: '' until
+ * their demo exists: compress it into src/videos, import it above, and assign the import here.
  */
 export const projects = [
     {
@@ -29,6 +33,7 @@ export const projects = [
         description: 'E-commerce for botanical perfumery. Catalog, guest checkout, and Mercado Pago payments, with a serverless API and Neon PostgreSQL.',
         technologies: ['React', 'Vite', 'Neon PostgreSQL', 'Mercado Pago'],
         image: numeLabImage,
+        video: '',
         demo: 'https://numelab.com.br',
         github: '',
         featured: true,
@@ -42,6 +47,7 @@ export const projects = [
         description: 'Technology and finance platform with a public site, an admin panel, an API, and a companion mobile app in the same project.',
         technologies: ['Next.js', 'React', 'Express', 'MongoDB'],
         image: techFinanceImage,
+        video: '',
         demo: 'https://techfinanceblog.com',
         github: '',
         featured: true,
@@ -55,6 +61,7 @@ export const projects = [
         description: 'Yoga application for mobile and web. An Express API and MongoDB Atlas serve the catalog, and practice media is loaded on demand.',
         technologies: ['Expo', 'React Native', 'Express', 'MongoDB'],
         image: '',
+        video: '',
         demo: '',
         github: '',
         featured: true,
@@ -68,6 +75,7 @@ export const projects = [
         description: 'Web system for the Luna Lunera theatre company. Feedback forms, QR codes, stored responses, and an admin panel for classes, shows, and team.',
         technologies: ['React', 'Vite', 'Express', 'PostgreSQL'],
         image: '',
+        video: '',
         demo: '',
         github: '',
         featured: true,
@@ -81,6 +89,7 @@ export const projects = [
         description: 'Website for graphic designer Luana Catarinozi, with an introduction, selected work, and contact.',
         technologies: ['Vite', 'Three.js'],
         image: luanaImage,
+        video: '',
         demo: 'https://luana-catarinozi.vercel.app/',
         github: '',
         featured: false,
@@ -95,7 +104,7 @@ export const projects = [
         technologies: ['HTML', 'CSS', 'JavaScript', 'Vite'],
         image: natarajImage,
         demo: 'https://nataraj-massoterapeuta.vercel.app/',
-        github: '',
+        github: 'https://github.com/GabrielRasf/nataraj',
         featured: false,
         status: 'Published',
         type: 'Website',
@@ -107,6 +116,7 @@ export const projects = [
         description: 'Local audio-to-text app. It transcribes files on your computer with faster-whisper and downloads a timestamped .txt. Audio is not uploaded.',
         technologies: ['Python', 'FastAPI', 'faster-whisper'],
         image: '',
+        video: transcriptorVideo,
         demo: '',
         github: 'https://github.com/GabrielRasf/transcriptFree',
         featured: false,
@@ -120,10 +130,11 @@ export const projects = [
         description: 'Customizable workout timer with rounds, a metronome, sounds, and a photo for each exercise.',
         technologies: ['Expo', 'React Native'],
         image: '',
+        video: '',
         demo: '',
-        github: 'https://github.com/GabrielRasf/pomOne',
+        github: '',
         featured: false,
-        status: 'Public',
+        status: 'Private',
         type: 'Application',
     },
     {
@@ -133,10 +144,11 @@ export const projects = [
         description: 'Android party-game app for adults. Eighteen games, with menus in Portuguese, English, Spanish, French, and Hindi.',
         technologies: ['Kotlin', 'Jetpack Compose', 'WebView'],
         image: '',
+        video: '',
         demo: '',
-        github: 'https://github.com/GabrielRasf/BebedeiraGames',
+        github: '',
         featured: false,
-        status: 'Public',
+        status: 'Private',
         type: 'Application',
     },
     {
@@ -166,25 +178,13 @@ export const projects = [
         type: 'Application',
     },
     {
-        id: 'audio-to-txt',
-        name: 'AudioToTxt',
-        category: 'applications',
-        description: 'Offline Windows app that transcribes audio and video on the computer with faster-whisper. Outputs include TXT, SRT, VTT, and JSON.',
-        technologies: ['Python', 'faster-whisper', 'CustomTkinter'],
-        image: '',
-        demo: '',
-        github: '',
-        featured: false,
-        status: 'Private',
-        type: 'Application',
-    },
-    {
         id: 'image2text',
         name: 'Image2Text',
         category: 'applications',
         description: 'Offline desktop OCR. Electron and React send images to a local Python API, which can use PaddleOCR, EasyOCR, or Tesseract.',
         technologies: ['Electron', 'React', 'Python', 'FastAPI'],
         image: '',
+        video: '',
         demo: '',
         github: '',
         featured: false,
@@ -210,9 +210,9 @@ export const projects = [
         category: 'web-systems',
         description: 'Fitness site with workout pages and sign-in, plus a C# API for users, workouts, exercises, comments, and ratings.',
         technologies: ['HTML', 'CSS', 'JavaScript', 'C#', 'MySQL'],
-        image: '',
-        demo: '',
-        github: 'https://github.com/GabrielRasf/Flow-Work',
+        image: flowWorkImage,
+        demo: 'https://flow-work-six.vercel.app',
+        github: 'https://github.com/GabrielRasf/FlowWork',
         featured: false,
         status: 'Public',
         type: 'Web system',
@@ -224,6 +224,7 @@ export const projects = [
         description: 'Food marketplace with catalog, restaurants, orders, payments, and subscriptions, across an API, a web app, and a mobile app.',
         technologies: ['Fastify', 'React', 'Expo', 'MongoDB', 'Firebase'],
         image: '',
+        video: '',
         demo: '',
         github: '',
         featured: false,
