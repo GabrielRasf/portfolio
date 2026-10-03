@@ -7,8 +7,6 @@ varying float vElevation;
 varying vec3 vNormal;
 varying vec3 vPosition;
 
-#include ../includes/ambientLight.glsl
-#include ../includes/directionalLight.glsl
 #include ../includes/pointLight.glsl
 
 void main()
@@ -32,9 +30,29 @@ void main()
         vPosition,
         0.95
     );
-    
+    light += pointLight(
+        vec3(1.0),
+        10.0,
+        normal,
+        vec3(-1.15, 0.22, 0.12),
+        viewDirection,
+        30.0,
+        vPosition,
+        0.95
+    );
+    light += pointLight(
+        vec3(1.0),
+        10.0,
+        normal,
+        vec3(1.2, 0.2, -0.08),
+        viewDirection,
+        30.0,
+        vPosition,
+        0.95
+    );
+
     color *= light;
-    
+
     gl_FragColor = vec4(color, 1.0);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>

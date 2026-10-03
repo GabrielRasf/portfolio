@@ -4,183 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Rodrigues</title>
-    <link rel="stylesheet" href="./style.css">
-    <script type="module" src="script.js"></script>
-    <script>
-        window.onload = () => {
-            document.body.style.visibility = 'visible'
+    <title>Gabriel Rodrigues — Websites, Web Systems, and Applications</title>
+    <meta name="description" content="Portfolio of Gabriel Rodrigues. Selected websites, web systems, applications, and interactive work.">
+    <meta property="og:title" content="Gabriel Rodrigues — Websites, Web Systems, and Applications">
+    <meta property="og:description" content="Portfolio of Gabriel Rodrigues. Selected websites, web systems, applications, and interactive work.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./images/techFinanceBlog.png">
+    <meta property="og:image:alt" content="techFinanceBlog, a published project by Gabriel Rodrigues">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gabriel Rodrigues — Websites, Web Systems, and Applications">
+    <meta name="twitter:description" content="Portfolio of Gabriel Rodrigues. Selected websites, web systems, applications, and interactive work.">
+    <meta name="twitter:image" content="./images/techFinanceBlog.png">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./favicon.ico" sizes="32x32">
+    <script type="application/ld+json" id="person-ld">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Gabriel Rodrigues",
+            "jobTitle": "Developer",
+            "description": "Developer focused on websites, web systems, applications, and interactive work.",
+            "knowsAbout": ["React", "Vite", "Next.js", "Express", "PostgreSQL", "MongoDB", "Expo", "React Native", "Three.js"],
+            "sameAs": [
+                "https://www.linkedin.com/in/dev-gabriel-rodrigues/",
+                "https://github.com/GabrielRasf"
+            ]
         }
     </script>
-
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./script.js"></script>
 </head>
 
 <body>
+    <a class="skip" href="#content">Skip to content</a>
 
-    <div id="preloader">
-        <div id="percent">1%</div>
-        <div id="barra">
-            <div id="progresso"></div>
-        </div>
+    <div id="preloader" aria-hidden="true">
+        <span class="preloader-mark">GR</span>
     </div>
-    <header>
-        <section translate="no" data-ignore-translate>
-            <div class="name-header">
-                <h1 class="left">Gabriel</h1>
-                <h1 class="right">Rodrigues</h1>
-            </div>
-            <hr class="hr">
-            <div class="menu-header">
-                <div class="menu-left">
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                    </ul>
-                </div>
-                <div class="menu-right">
-                    <ul>
-                        <li><a href="#works">Works</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="hr">
-        </section>
+
+    <header class="site-header">
+        <a class="brand" href="#top">Gabriel Rodrigues</a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
-    <section class="section-1" translate="no" data-ignore-translate>
-        <div>
-            <div class="container-body">
-                <section class="section-h1-brazillian">
-                    <h1 class="h1-brazillian">Brazillian</h1>
-                </section>
-                <section class="section-h1-front-end">
-                    <h1 class="h1-front-end">Front<wbr>-End</h1>
-                </section>
-                <hr class="hr">
-                <section class="section-h1-creative-developer">
-                    <h1 class="h1-creative-developer">Creative<wbr>Developer</h1>
-                </section>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section-2">
-        <section class="marquee" translate="no" data-ignore-translate>
-            <hr class="hr">
-            <div class="marquee__content">
-                <span>Full-Stack Developer &nbsp;<span class="orange">•</span>&nbsp; Creative Developer &nbsp;•&nbsp;
-                    Freelancer &nbsp;<span class="orange">•</span>&nbsp;
-                </span>
-                <span>Full-Stack Developer &nbsp;•&nbsp; Creative Developer &nbsp;•&nbsp;
-                    Freelancer &nbsp;•&nbsp;</span> <span>Full-Stack Developer &nbsp;<span class="orange">•</span>&nbsp;
-                    Creative Developer &nbsp;•&nbsp;
-                    Freelancer &nbsp;<span class="orange">•</span>&nbsp;
-                </span>
-                <span>Full-Stack Developer &nbsp;•&nbsp; Creative Developer &nbsp;•&nbsp;
-                    Freelancer &nbsp;•&nbsp;</span>
-            </div>
-            <hr class="hr-orange">
+    <main id="content">
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <p class="webgl-fallback" id="webgl-fallback" hidden>
+                The interactive background is unavailable on this device. The portfolio below is still available.
+            </p>
+            <p class="kicker">Creative Developer</p>
+            <h1 id="hero-title">Gabriel Rodrigues</h1>
+            <p class="lede">I build websites, web systems, and applications, and I also work on interactive experiences.</p>
+            <ul class="disciplines">
+                <li>Websites</li>
+                <li>Web Systems</li>
+                <li>Applications</li>
+                <li>Interactive work</li>
+            </ul>
+            <a class="button" href="#work">View projects</a>
         </section>
-        <section class="about-frame">
-            <p id="typewriter" class="typewriter"></p>
-            <div class="card-about card1">
-                <h3 class="card-title-h3">About Me</h3>
-                <p>I am passionate about turning ideas into innovative digital experiences.</p>
-            </div>
-            <div class="card-about card2">
-                <h3 class="card-title-h3">Skills</h3>
-                <p>HTML | CSS | Javascript | ThreeJs | NodeJs | Blender</p>
-            </div>
-            <div class="card-about card3">
-                <h3 class="card-title-h3">Education</h3>
-                <p>Currently studying Systems Analysis and Development at PUC Minas and a Technical Course in Systems
-                    Development at SENAC</p>
+
+        <section id="about" class="about" aria-labelledby="about-title">
+            <h2 id="about-title">About</h2>
+            <div class="about-grid">
+                <article>
+                    <h3>About me</h3>
+                    <p>I am a developer focused on building websites, web systems, and digital solutions. I combine web development with an interest in technology, data, and finance to create practical and functional digital experiences.</p>
+                </article>
+                <article>
+                    <h3>Services</h3>
+                    <ul>
+                        <li>Websites</li>
+                        <li>Web systems</li>
+                        <li>E-commerce</li>
+                        <li>APIs and integrations</li>
+                        <li>Custom software</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Education</h3>
+                    <p>Graduate in Systems Analysis and Development, currently studying Mathematics with a focus on programming and finance. Technical degree in Systems Development.</p>
+                </article>
             </div>
         </section>
-    </section>
 
-    <section id="works" class="section-3 next-section" translate="no" data-ignore-translate>
-        <div class="groups-work">
-            <h1 class="works indent-0">
-                <p>Works</p>
-            </h1>
-            <h1 class="works indent-1">
-                <p>Works</p>
-            </h1>
-            <h1 class="works indent-2">
-                <p>Works</p>
-            </h1>
-            <h1 class="works indent-3 works-orange">
-                <p>Works</p>
-            </h1>
-            <h1 class="works indent-4">
-                <p>Works</p>
-            </h1>
-        </div>
-
-        <section class="groups-work">
-            <div class="group-item">
-                <div class="imgbox">
-                    <img src="images/luanaCatarinozi.png" alt="Luana Catarinozi Front End Image">
-                    <button onclick="window.open('https://luana-catarinozi.vercel.app/', '_blank')">
-                        Visit site
-                    </button>
-                </div>
+        <section id="work" class="work" aria-labelledby="work-title">
+            <div class="work-heading">
+                <h2 id="work-title">Selected work</h2>
+                <p>Published sites, private systems, and experiments.</p>
             </div>
+            <div class="filters" id="filters" role="group" aria-label="Project categories"></div>
+            <p class="work-count" id="work-count" aria-live="polite"></p>
+            <div class="work-groups" id="work-groups"></div>
+        </section>
 
-            <div class="group-item">
-                <div class="imgbox">
-                    <img src="images/natarajMassoterapia.png" alt="Nataraj Massoterapeuta Front End Image">
-                    <button onclick="window.open('https://nataraj-massoterapeuta.vercel.app/', '_blank')">
-                        Visit site
-                    </button>
-                </div>
+        <section id="contact" class="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contact</h2>
+            <p>LinkedIn and GitHub are the public contact points on this site.</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/dev-gabriel-rodrigues/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/GabrielRasf" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a id="contact-whatsapp" hidden>WhatsApp</a>
             </div>
         </section>
-    </section>
+    </main>
 
-    <section id="contact" translate="no" data-ignore-translate>
-        <div class="container-contact">
-            <ul class="smoky hover-scale"> <!-- Removed only in GitHub -->
-                <li>W</li>
-                <li>H</li>
-                <li>A</li>
-                <li>T</li>
-                <li>S</li>
-                <li>A</li>
-                <li>P</li>
-                <li>P</li>
-            </ul>
-            <ul class="smoky hover-scale"><!-- Removed only in GitHub -->
-                <li>E</li>
-                <li>M</li>
-                <li>A</li>
-                <li>I</li>
-                <li>L</li>
-            </ul>
-            <ul class="smoky hover-scale" data-link="https://www.linkedin.com/in/dev-gabriel-rodrigues/">
-                <li>L</li>
-                <li>I</li>
-                <li>N</li>
-                <li>K</li>
-                <li>E</li>
-                <li>D</li>
-                <li>I</li>
-                <li>N</li>
-            </ul>
-            <ul class="smoky hover-scale" data-link="https://github.com/GabrielRasf">
-                <li>G</li>
-                <li>I</li>
-                <li>T</li>
-                <li>H</li>
-                <li>U</li>
-                <li>B</li>
-            </ul>
-        </div>
-    </section>
-    <footer class="footer">All Rights Reserved </footer>
-    <canvas class="webgl"></canvas>
-
+    <footer class="site-footer">
+        <p>Gabriel Rodrigues</p>
+    </footer>
+    <canvas class="webgl" aria-hidden="true"></canvas>
 </body>
 
 </html>

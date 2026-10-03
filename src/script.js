@@ -1,467 +1,221 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import GUI from 'lil-gui';
-import waterVertexShader from './shaders/water/vertex.glsl';
-import waterFragmentShader from './shaders/water/fragment.glsl';
+import { categories, ogImage, projects } from './data/projects.js'
+import { credentials } from './data/credentials.js'
+import { site } from './data/site.js'
 
-/* ===================================================
-   ==================== WarningOrientation ===========
-   =================================================== */
-// const warning = document.getElementById('landscape-warning');
+const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+let reduceMotion = motionQuery.matches
 
-// function checkOrientation() {
-//     if (window.innerWidth > window.innerHeight && window.innerWidth <= 1024) {
-//         // celular em horizontal
-//         warning.style.display = 'flex';
-//     } else {
-//         // celular em vertical ou desktop
-//         warning.style.display = 'none';
-//     }
-// }
+document.documentElement.classList.add('js-ready')
+motionQuery.addEventListener('change', (event) => {
+    reduceMotion = event.matches
+})
 
-// // Checa a orientação ao carregar a página
-// window.addEventListener('load', checkOrientation);
+const preloader = document.getElementById('preloader')
+function hidePreloader() {
+    if (!preloader) return
+    preloader.classList.add('is-done')
+    window.setTimeout(() => {
+        preloader.hidden = true
+    }, reduceMotion ? 0 : 450)
+}
+if (document.readyState === 'complete') hidePreloader()
+else window.addEventListener('load', hidePreloader, { once: true })
 
-// // Checa sempre que a tela é redimensionada ou rotacionada
-// window.addEventListener('resize', checkOrientation);
-// window.addEventListener('orientationchange', checkOrientation);
+function upsertMeta(selector, create) {
+    let node = document.querySelector(selector)
+    if (!node) {
+        node = create()
+        document.head.append(node)
+    }
+    return node
+}
 
-// // Remove aviso ao clicar na tela
-// window.addEventListener('click', () => {
-//     warning.style.display = 'none';
-// });
+function applySiteUrl() {
+    for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
+        const node = document.querySelector(selector)
+        if (!node) continue
+        node.setAttribute('content', site.url ? new URL(ogImage, `${site.url}/`).href : ogImage)
+    }
+    if (!site.url) return
+    const canonical = upsertMeta('link[rel="canonical"]', () => {
+        const link = document.createElement('link')
+        link.rel = 'canonical'
+        return link
+    })
+    canonical.href = `${site.url}/`
+    const ogUrl = upsertMeta('meta[property="og:url"]', () => {
+        const meta = document.createElement('meta')
+        meta.setAttribute('property', 'og:url')
+        return meta
+    })
+    ogUrl.setAttribute('content', `${site.url}/`)
+    const person = document.getElementById('person-ld')
+    if (person) {
+        const data = JSON.parse(person.textContent)
+        data.url = site.url
+        person.textContent = JSON.stringify(data)
+    }
+}
+applySiteUrl()
 
+const filtersEl = document.getElementById('filters')
+const workGroupsEl = document.getElementById('work-groups')
+const countEl = document.getElementById('work-count')
+let activeCategory = 'all'
 
-/* ===================================================
-   ==================== PRELOADER ====================
-   =================================================== */
-const percent = document.getElementById('percent');
-const preloader = document.getElementById('preloader');
-const content = document.getElementById('content');
+function escapeHtml(value) {
+    return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+}
 
-let contador = 1;
-const duracaoTotal = 1800;
-const numerosTotais = 100;
-const intervalo = duracaoTotal / numerosTotais;
-
-function mostrarNumero() {
-    percent.textContent = contador + '%';
-    if (contador < 100) {
-        contador++;
-        setTimeout(mostrarNumero, intervalo);
+function isHttpUrl(value) {
+    try {
+        const url = new URL(value)
+        return url.protocol === 'http:' || url.protocol === 'https:'
+    } catch {
+        return false
     }
 }
 
-mostrarNumero();
-
-window.onload = () => {
-    contador = 100;
-    percent.textContent = '100%';
-    setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-            content.style.display = 'block';
-        }, 500);
-    }, 300);
-};
-
-/* ===================================================
-   ==================== GUI / DEBUG ==================
-   =================================================== */
-const gui = new GUI({ width: 300, closed: true });
-gui.domElement.style.position = 'fixed';
-gui.domElement.style.bottom = '10px';
-gui.domElement.style.right = '10px';
-gui.domElement.style.top = 'auto';
-
-const debugObject = {};
-gui.close()
-
-/* ===================================================
-   ==================== THREE.JS =====================
-   =================================================== */
-
-// ---- Canvas & Scene ----
-const canvas = document.querySelector('canvas.webgl');
-const scene = new THREE.Scene();
-
-// ---- Sizes ----
-const sizes = {
-  width: window.visualViewport?.width ?? window.innerWidth,
-  height: window.visualViewport?.height ?? window.innerHeight
-};
-
-// ---- Camera ----
-
-const camera = new THREE.PerspectiveCamera(
-    75,
-    sizes.width / sizes.height,
-    0.1,
-    100);
-camera.position.set(0, 0, 1);
-scene.add(camera);
-
-// ---- Renderer ----
-const renderer = new THREE.WebGLRenderer({ 
-    canvas, 
-    alpha: true
-});
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-renderer.domElement.addEventListener("touchmove", (event) => {
-    event.preventDefault()
-}, { passive: false })
-
-// ---- Controls ----
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.enableZoom = false;
-controls.enableRotate = false;
-controls.enablePan = false;
-
-// ---- Resize ----
-window.addEventListener('resize', () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
-
-/* ===================================================
-   ==================== PARTICLES ====================
-   =================================================== */
-// const particlesCount = 1200;
-// const positions = new Float32Array(particlesCount * 3);
-// const colors = new Float32Array(particlesCount * 3);
-
-// for (let i = 0; i < particlesCount; i++) {
-//     positions[i * 3 + 0] = (Math.random() - 0.5) * 15;
-//     positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-//     positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-
-//     colors[i * 3 + 0] = Math.random() * 0.5;
-//     colors[i * 3 + 1] = Math.random() * 0.5;
-//     colors[i * 3 + 2] = Math.random() * 0.5;
-// }
-
-// const particlesGeometry = new THREE.BufferGeometry();
-// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-// particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-// const particlesMaterial = new THREE.PointsMaterial({
-//     color: 0xffffff,
-//     size: 0.003,
-//     sizeAttenuation: true,
-//     transparent: true,
-//     alphaTest: 0.01,
-//     vertexColors: true
-// });
-
-// const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-// scene.add(particles);
-
-/* ===================================================
-   ==================== WATER ========================
-   =================================================== */
-debugObject.depthColor = '#d9d9d9d0';
-debugObject.surfaceColor = '#ffbe6f';
-
-// const waterGeometry = new THREE.PlaneGeometry(3, 2, 512, 512);
-const isMobile = window.innerWidth <= 1024;
-const segments = isMobile ? 128 : 256; // mobile: 128, desktop: 512
-const waterGeometry = new THREE.PlaneGeometry(4, 3, segments, segments);
-
-const waterMaterial = new THREE.ShaderMaterial({
-    vertexShader: waterVertexShader,
-    fragmentShader: waterFragmentShader,
-    uniforms: {
-        uTime: { value: 0 },
-        uBigWavesElevation: { value: 0.05 },
-        uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
-        uBigWavesSpeed: { value: 0.55 },
-        uSmallWavesElevation: { value: 0.15 },
-        uSmallWavesFrequency: { value: 3 },
-        uSmallWavesSpeed: { value: 0.2 },
-        uSmallIterations: { value: 1.6 },
-        uDepthColor: { value: new THREE.Color(debugObject.depthColor).multiplyScalar(0.1) },
-        uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor).multiplyScalar(0.2)  },
-        uColorOffset: { value: 0.55 },
-        uColorMultiplier: { value: 1.5 }
-    },
-        wireframe: true, 
-        transparent: true
-
-});
-
-gui.addColor(debugObject, 'depthColor').onChange(() => waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor));
-gui.addColor(debugObject, 'surfaceColor').onChange(() => waterMaterial.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor));
-gui.add(waterMaterial.uniforms.uBigWavesElevation, 'value').min(0).max(1).step(0.001).name('uBigWavesElevation');
-gui.add(waterMaterial.uniforms.uBigWavesFrequency.value, 'x').min(0).max(10).step(0.001).name('uBigWavesFrequencyX');
-gui.add(waterMaterial.uniforms.uBigWavesFrequency.value, 'y').min(0).max(10).step(0.001).name('uBigWavesFrequencyY');
-gui.add(waterMaterial.uniforms.uBigWavesSpeed, 'value').min(0).max(4).step(0.001).name('uBigWavesSpeed');
-gui.add(waterMaterial.uniforms.uSmallWavesElevation, 'value').min(0).max(1).step(0.001).name('uSmallWavesElevation');
-gui.add(waterMaterial.uniforms.uSmallWavesFrequency, 'value').min(0).max(30).step(0.001).name('uSmallWavesFrequency');
-gui.add(waterMaterial.uniforms.uSmallWavesSpeed, 'value').min(0).max(4).step(0.001).name('uSmallWavesSpeed');
-gui.add(waterMaterial.uniforms.uSmallIterations, 'value').min(0).max(5).step(1).name('uSmallIterations');
-gui.add(waterMaterial.uniforms.uColorOffset, 'value').min(0).max(1).step(0.001).name('uColorOffset');
-gui.add(waterMaterial.uniforms.uColorMultiplier, 'value').min(0).max(10).step(0.001).name('uColorMultiplier');
-
-const water = new THREE.Mesh(waterGeometry, waterMaterial);
-water.rotation.x = -Math.PI * 0.35;
-scene.add(water);
-
-/* ===================================================
-   ==================== MOUSE INTERACTION =============
-   =================================================== */
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    camera.position.x = mouseX * 0.2;
-    camera.position.y = mouseY * 0.2;
-    camera.lookAt(0, 0, 0);
-});
-
-/* ===================================================
-   ==================== SMOOTH SCROLL =================
-   =================================================== */
-function smoothScroll(target, duration = 1000) {
-    const start = window.scrollY;
-    const end = target.offsetTop;
-    const distance = end - start;
-    let startTime = null;
-
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+function isSafeAssetUrl(value) {
+    const text = String(value || '').trim()
+    if (!text || text.includes('\\') || text.includes('\0') || text.startsWith('//')) return false
+    if (isHttpUrl(text)) return true
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(text)) return false
+    try {
+        return !decodeURIComponent(text).split(/[/\\]/).includes('..')
+    } catch {
+        return false
     }
-
-    function animation(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const ease = easeInOutCubic(progress);
-
-        window.scrollTo(0, start + distance * ease);
-
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    requestAnimationFrame(animation);
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) smoothScroll(target, 1200);
-    });
-});
-
-
-/* ===================================================
-   ==================== About cards ====================
-   =================================================== */
-const aboutSection = document.querySelector('.about-frame');
-const cards = document.querySelectorAll('.card-about');
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('show');
-                }, index * 200); // delay de 200ms entre cada card
-            });
-        }
-    });
-}, { threshold: 0.3 });
-
-observer.observe(aboutSection);
-
-/* ===================================================
-   ==================== TYPEWRITER ====================
-   =================================================== */
-// const text = "I am passionate about turning ideas into innovative digital experiences. Always seeking creative solutions for complex challenges, I found my true expression in web development. Since 2024, I have fully dedicated myself to mastering and expanding my skills, diving deeper into the world of creative development. Skills: HTML | CSS | Javascript | ThreeJs | NodeJs | Blender";
-// const el = document.getElementById("typewriter");
-// let i = 0, forward = true;
-
-// // Função typewriter
-// function typeWriter() {
-//     if (forward) {
-//         if (i < text.length) el.textContent += text.charAt(i++);
-//     } else {
-//         if (i > 0) el.textContent = text.substring(0, --i);
-//         else forward = true;
-//     }
-
-//     setTimeout(typeWriter, forward ? 100 : 50);
-// }
-
-// // Observer para disparar quando a seção entrar na tela
-// let typewriterStarted = false;
-// const observerType = new IntersectionObserver((entries, obs) => {
-//     entries.forEach(entry => {
-//         if (entry.isIntersecting && !typewriterStarted) {
-//             typewriterStarted = true;
-//             setTimeout(typeWriter, 1000); // espera 1s antes de começar
-//             obs.unobserve(entry.target); // dispara apenas uma vez
-//         }
-//     });
-// }, { threshold: 0.5 });
-
-// // Observa o elemento do typewriter
-// observerType.observe(el);
-
-/* ===================================================
-   ==================== HTML TEXT INTERACTION =========
-   =================================================== */
-// Só habilita o efeito em telas grandes e dispositivos com hover
-if (window.innerWidth > 768 && window.matchMedia("(hover: hover)").matches) {
-    const texts = document.querySelectorAll('.h1-brazillian, .h1-front-end, .h1-creative-developer, .menu-header li, .works-orange');
-
-    texts.forEach(text => {
-        text.style.position = 'relative';
-        text.style.display = 'inline-block';
-        text.style.transition = 'transform 0.08s';
-
-        text.addEventListener('mouseenter', () => text.followCursor = true);
-        text.addEventListener('mouseleave', () => {
-            text.followCursor = false;
-            text.style.transform = 'translate(0, 0)';
-        });
-    });
-
-    document.addEventListener('mousemove', (event) => {
-        const mouseX = event.clientX, mouseY = event.clientY;
-        texts.forEach(text => {
-            if (text.followCursor) {
-                const rect = text.getBoundingClientRect();
-                const offsetX = mouseX - (rect.left + rect.width / 2);
-                const offsetY = mouseY - (rect.top + rect.height / 2);
-                text.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-            }
-        });
-    });
+function projectMedia(project) {
+    if (project.image && isSafeAssetUrl(project.image)) {
+        return `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.name)} preview" width="1600" height="1000">`
+    }
+    const tech = project.technologies.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
+    return `<div class="project-mark" aria-hidden="true"><p>${escapeHtml(project.type)}</p><strong>${escapeHtml(project.name)}</strong><ul>${tech}</ul></div>`
 }
 
-/* ===================================================
-   ==================== Marquee show ============
-   =================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-    const marquee = document.querySelector(".marquee");
-    const section2 = document.querySelector(".section-2");
+function projectActions(project) {
+    if (isHttpUrl(project.demo)) {
+        return `<a class="button" href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">View project</a>`
+    }
+    if (isHttpUrl(project.github)) {
+        return `<a class="button" href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">View code</a>`
+    }
+    if (project.status === 'Private') {
+        return `<p class="private">Private — no public demo</p>`
+    }
+    return `<p class="private">${escapeHtml(project.status)}</p>`
+}
 
-    // Define threshold baseado na largura da tela
-    const thresholdValue = window.innerWidth <= 768 ? 0.3 : 0.5;
+function projectCard(project, imageFirst) {
+    const tech = project.technologies.length
+        ? `<ul class="tech">${project.technologies.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
+        : ''
+    const flip = imageFirst ? '' : ' project-flip'
+    return `<article class="project project-featured${flip}">
+        <div class="project-media">${projectMedia(project)}</div>
+        <div class="project-copy">
+            <p class="eyebrow">${escapeHtml(project.type)}</p>
+            <h3>${escapeHtml(project.name)}</h3>
+            <p>${escapeHtml(project.description)}</p>
+            ${tech}
+            <div class="project-actions">${projectActions(project)}</div>
+        </div>
+    </article>`
+}
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= thresholdValue) {
-                    marquee.classList.add("show");
-                } else {
-                    marquee.classList.remove("show");
-                }
-            });
-        },
-        {
-            root: null, // viewport
-            threshold: thresholdValue
-        }
-    );
+function renderFilters() {
+    const used = new Set(projects.map((project) => project.category))
+    const visibleCategories = categories.filter((category) => category.id === 'all' || used.has(category.id))
+    filtersEl.innerHTML = visibleCategories.map((category) => {
+        const pressed = category.id === activeCategory
+        return `<button type="button" class="filter" data-category="${category.id}" aria-pressed="${pressed}">${category.label}</button>`
+    }).join('')
+}
 
-    observer.observe(section2);
-});
+function renderProjects() {
+    const visible = projects.filter((project) => activeCategory === 'all' || project.category === activeCategory)
+    const groups = categories
+        .filter((category) => category.id !== 'all')
+        .map((category) => ({
+            ...category,
+            items: visible.filter((project) => project.category === category.id),
+        }))
+        .filter((group) => group.items.length > 0)
 
+    let sequence = 0
+    workGroupsEl.innerHTML = groups.map((group) => {
+        const cards = group.items.map((project) => {
+            const imageFirst = sequence % 2 === 0
+            sequence += 1
+            return projectCard(project, imageFirst)
+        }).join('')
+        return `<section class="work-group" aria-labelledby="group-${group.id}">
+            <h3 class="work-group-title" id="group-${group.id}">${escapeHtml(group.label)}</h3>
+            <div class="featured">${cards}</div>
+        </section>`
+    }).join('')
 
+    const noun = visible.length === 1 ? 'project' : 'projects'
+    countEl.textContent = `${visible.length} ${noun}`
+}
 
+filtersEl.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-category]')
+    if (!button) return
+    activeCategory = button.dataset.category
+    renderFilters()
+    renderProjects()
+    filtersEl.querySelector(`[data-category="${CSS.escape(activeCategory)}"]`)?.focus()
+})
 
-/* ===================================================
-   ==================== FRAMES INTERACTION ============
-   =================================================== */
-const frames = document.querySelectorAll('work-frame');
-frames.forEach(frame => {
-    frame.style.position = 'relative';
-    frame.style.display = 'inline-block';
-    frame.style.transition = 'transform 0.05s';
-    frame.addEventListener('mouseenter', () => frame.followCursor = true);
-    frame.addEventListener('mouseleave', () => {
-        frame.followCursor = false;
-        frame.style.transform = 'translate(0, 0)';
-    });
-});
+function mountWhatsapp() {
+    const digits = String(site.whatsapp || '').replace(/[^\d]/g, '')
+    const anchor = document.getElementById('contact-whatsapp')
+    if (!anchor || !digits) return
+    anchor.href = `https://wa.me/${digits}?text=${encodeURIComponent(String(site.whatsappMessage || ''))}`
+    anchor.target = '_blank'
+    anchor.rel = 'noopener noreferrer'
+    anchor.hidden = false
+}
 
-document.addEventListener('mousemove', (event) => {
-    const mouseX = event.clientX, mouseY = event.clientY;
-    frames.forEach(frame => {
-        if (frame.followCursor) {
-            const rect = frame.getBoundingClientRect();
-            const offsetX = mouseX - (rect.left + rect.width / 2);
-            const offsetY = mouseY - (rect.top + rect.height / 2);
-            frame.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        }
-    });
-});
+renderFilters()
+renderProjects()
+mountWhatsapp()
 
+if (credentials.length) {
+    const about = document.getElementById('about')
+    const section = document.createElement('section')
+    section.id = 'credentials'
+    section.className = 'credentials'
+    const links = credentials.filter((item) => isHttpUrl(item.href))
+    section.innerHTML = `<h2>Credentials</h2><ul>${links.map((item) => `<li><a href="${escapeHtml(item.href)}">${escapeHtml(item.name)}</a></li>`).join('')}</ul>`
+    about.after(section)
+}
 
+const webglFallback = document.getElementById('webgl-fallback')
+function showWebglFallback(quiet) {
+    if (!webglFallback || quiet) return
+    webglFallback.hidden = false
+}
+function hideWebglFallback() {
+    if (webglFallback) webglFallback.hidden = true
+}
 
-/* ===================================================
-   ==================== WORKS ANIMATION===============
-   =================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    const sectionWorks = document.querySelector("#works");
-    const works = document.querySelectorAll(".works");
-
-    if (!sectionWorks || works.length === 0) return;
-
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                works.forEach(el => el.classList.add("animate"));
-                obs.unobserve(sectionWorks);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    observer.observe(sectionWorks);
-});
-
-/* ===================================================
-   ==================== SMOKY ========================
-   =================================================== */
-document.querySelectorAll("ul.smoky").forEach(ul => {
-    ul.addEventListener("click", () => {
-        ul.classList.add("animate");
-
-        const link = ul.getAttribute("data-link");
-
-        setTimeout(() => {
-            window.open(link, "_blank");
-
-            ul.classList.remove("animate");
-        }, 1200);
-    });
-});
-
-/* ===================================================
-   ==================== ANIMATE ========================
-   =================================================== */
-const clock = new THREE.Clock();
-
-const tick = () => {
-    waterMaterial.uniforms.uTime.value = clock.getElapsedTime();
-    renderer.render(scene, camera);
-    requestAnimationFrame(tick);
-};
-
-tick();
+const canvas = document.querySelector('canvas.webgl')
+if (canvas && !reduceMotion) {
+    import('./webgl.js').then(({ initWebgl }) => {
+        initWebgl({
+            canvas,
+            reduceMotion: () => reduceMotion,
+            showFallback: showWebglFallback,
+            hideFallback: hideWebglFallback,
+        })
+    }).catch(() => showWebglFallback(false))
+}
