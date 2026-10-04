@@ -342,10 +342,14 @@ h1 {
 
 /* 9/16 of 10/16 of the column: same height as a 16:10 cover beside it. */
 .project-phone .project-media {
-    justify-self: center;
+    justify-self: end;
     width: calc(100% * 90 / 256);
     aspect-ratio: 9 / 16;
     border-radius: 2.4rem;
+}
+
+.project-phone.project-flip .project-media {
+    justify-self: start;
 }
 
 .project-media img,
@@ -496,7 +500,9 @@ h1 {
     }
 
     /* Same area as a 16:10 cover at full column width, capped for tablets. */
-    .project-phone .project-media {
+    .project-phone .project-media,
+    .project-phone.project-flip .project-media {
+        justify-self: start;
         width: min(59.3%, 28rem);
     }
 

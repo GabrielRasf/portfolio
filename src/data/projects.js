@@ -5,6 +5,7 @@ import noteScanImage from '../images/noteScan.png'
 import numeLabImage from '../images/numeLab.png'
 import techFinanceImage from '../images/techFinanceBlog.png'
 import pomOneVideo from '../videos/pomOne.mp4'
+import traineeProgressVideo from '../videos/traineeProgress.mp4'
 import transcriptorVideo from '../videos/transcriptor.mp4'
 
 export const ogImage = techFinanceImage
@@ -159,6 +160,7 @@ export const projects = [
         description: 'Workout log kept on the device. Cycles with dates and weekly frequency, workouts, exercises, sets, and progress.',
         technologies: ['Expo', 'React Native', 'AsyncStorage'],
         image: '',
+        video: traineeProgressVideo,
         demo: '',
         github: 'https://github.com/GabrielRasf/TraineeProgress',
         featured: false,
