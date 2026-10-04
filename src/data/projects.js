@@ -4,6 +4,7 @@ import natarajImage from '../images/natarajMassoterapia.webp'
 import noteScanImage from '../images/noteScan.png'
 import numeLabImage from '../images/numeLab.png'
 import techFinanceImage from '../images/techFinanceBlog.png'
+import pomOneVideo from '../videos/pomOne.mp4'
 import transcriptorVideo from '../videos/transcriptor.mp4'
 
 export const ogImage = techFinanceImage
@@ -130,7 +131,7 @@ export const projects = [
         description: 'Customizable workout timer with rounds, a metronome, sounds, and a photo for each exercise.',
         technologies: ['Expo', 'React Native'],
         image: '',
-        video: '',
+        video: pomOneVideo,
         demo: '',
         github: '',
         featured: false,
