@@ -123,7 +123,8 @@ function projectCard(project, imageFirst) {
         ? `<ul class="tech">${project.technologies.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
         : ''
     const flip = imageFirst ? '' : ' project-flip'
-    return `<article class="project project-featured${flip}">
+    const phone = project.category === 'mobile' && project.video ? ' project-phone' : ''
+    return `<article class="project project-featured${flip}${phone}">
         <div class="project-media">${projectMedia(project)}</div>
         <div class="project-copy">
             <p class="eyebrow">${escapeHtml(project.type)}</p>

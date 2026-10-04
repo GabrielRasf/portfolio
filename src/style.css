@@ -330,6 +330,22 @@ h1 {
     background: #1c1916;
     width: 100%;
     aspect-ratio: 16 / 10;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .project-media:hover {
+        transform: scale(1.04);
+        box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.45);
+    }
+}
+
+/* 9/16 of 10/16 of the column: same height as a 16:10 cover beside it. */
+.project-phone .project-media {
+    justify-self: center;
+    width: calc(100% * 90 / 256);
+    aspect-ratio: 9 / 16;
+    border-radius: 2.4rem;
 }
 
 .project-media img,
@@ -339,12 +355,6 @@ h1 {
     height: 100%;
     object-fit: contain;
     object-position: center;
-    transition: transform 0.6s ease;
-}
-
-.project-featured:hover img,
-.project-featured:hover video {
-    transform: scale(1.03);
 }
 
 .project-mark {
@@ -485,6 +495,11 @@ h1 {
         order: 0;
     }
 
+    /* Same area as a 16:10 cover at full column width, capped for tablets. */
+    .project-phone .project-media {
+        width: min(59.3%, 28rem);
+    }
+
     .project-featured.project-flip .project-copy {
         text-align: left;
     }
@@ -535,13 +550,11 @@ h1 {
     }
 
     #preloader,
-    .project-media img,
-    .project-media video {
+    .project-media {
         transition: none;
     }
 
-    .project-featured:hover img,
-    .project-featured:hover video {
+    .project-media:hover {
         transform: none;
     }
 }
