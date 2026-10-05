@@ -216,6 +216,12 @@ h1 {
     line-height: 0.95;
 }
 
+@font-face {
+    font-family: 'Anton';
+    src: url('./fonts/Anton-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
 .about-grid {
     display: grid;
     grid-template-columns: 1.4fr 0.8fr 1fr;
@@ -264,6 +270,18 @@ h1 {
 .work-heading p {
     max-width: 36rem;
     margin: 0;
+}
+
+.about h2.title-display,
+.work h2,
+.work-group-title,
+.contact h2 {
+    font-family: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+    font-size: clamp(8rem, 22vw, 36rem);
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    white-space: normal;
 }
 
 .filters {
@@ -340,10 +358,10 @@ h1 {
     }
 }
 
-/* 9/16 of 10/16 of the column: same height as a 16:10 cover beside it. */
+/* 1.2 × (9/16 of 10/16 of the column): 20% taller than a 16:10 cover beside it. */
 .project-phone .project-media {
     justify-self: end;
-    width: calc(100% * 90 / 256);
+    width: calc(100% * 108 / 256);
     aspect-ratio: 9 / 16;
     border-radius: 2.4rem;
 }
@@ -499,11 +517,11 @@ h1 {
         order: 0;
     }
 
-    /* Same area as a 16:10 cover at full column width, capped for tablets. */
+    /* 20% wider than a frame with the same area as a full-width 16:10 cover, capped for tablets. */
     .project-phone .project-media,
     .project-phone.project-flip .project-media {
         justify-self: start;
-        width: min(59.3%, 28rem);
+        width: min(71.2%, 33.6rem);
     }
 
     .project-featured.project-flip .project-copy {

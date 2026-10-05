@@ -4,6 +4,7 @@ import natarajImage from '../images/natarajMassoterapia.webp'
 import noteScanImage from '../images/noteScan.png'
 import numeLabImage from '../images/numeLab.png'
 import techFinanceImage from '../images/techFinanceBlog.png'
+import noteScanVideo from '../videos/noteScan.mp4'
 import pomOneVideo from '../videos/pomOne.mp4'
 import traineeProgressVideo from '../videos/traineeProgress.mp4'
 import transcriptorVideo from '../videos/transcriptor.mp4'
@@ -201,6 +202,7 @@ export const projects = [
         description: 'Mobile app to photograph a note and read the text on the device, with sign-in and profile screens.',
         technologies: ['Expo', 'React Native'],
         image: noteScanImage,
+        video: noteScanVideo,
         demo: '',
         github: 'https://github.com/GabrielRasf/NoteScan',
         featured: false,
