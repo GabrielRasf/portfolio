@@ -163,14 +163,42 @@ function renderProjects() {
             return projectCard(project, imageFirst)
         }).join('')
         return `<section class="work-group" aria-labelledby="group-${group.id}">
-            <h3 class="work-group-title" id="group-${group.id}">${escapeHtml(group.label)}</h3>
+            <h3 class="work-group-title title-display" id="group-${group.id}">${escapeHtml(group.label)}</h3>
             <div class="featured">${cards}</div>
         </section>`
     }).join('')
 
     const noun = visible.length === 1 ? 'project' : 'projects'
     countEl.textContent = `${visible.length} ${noun}`
+    fitDisplayTitles()
 }
+
+function contentWidth(element) {
+    const style = getComputedStyle(element)
+    return element.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
+}
+
+function fitDisplayTitles() {
+    for (const title of document.querySelectorAll('.title-display')) {
+        title.style.fontSize = ''
+        title.style.whiteSpace = 'nowrap'
+        const range = document.createRange()
+        range.selectNodeContents(title)
+        const width = range.getBoundingClientRect().width
+        const available = contentWidth(title.parentElement)
+        if (width > available) {
+            const size = parseFloat(getComputedStyle(title).fontSize)
+            title.style.fontSize = `${Math.floor(size * available / width)}px`
+        }
+    }
+}
+
+let fitFrame = 0
+window.addEventListener('resize', () => {
+    cancelAnimationFrame(fitFrame)
+    fitFrame = requestAnimationFrame(fitDisplayTitles)
+})
+document.fonts?.ready.then(fitDisplayTitles)
 
 filtersEl.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-category]')

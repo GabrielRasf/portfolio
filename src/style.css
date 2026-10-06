@@ -217,8 +217,8 @@ h1 {
 }
 
 @font-face {
-    font-family: 'Anton';
-    src: url('./fonts/Anton-Regular.woff2') format('woff2');
+    font-family: 'Bebas Neue';
+    src: url('./fonts/BebasNeue-Regular.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -449,10 +449,7 @@ h1 {
 }
 
 .work-group-title {
-    font-size: clamp(2.8rem, 4vw, 4rem);
     font-weight: 400;
-    letter-spacing: -0.04em;
-    line-height: 1;
 }
 
 .work-group .featured,

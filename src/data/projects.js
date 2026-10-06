@@ -4,6 +4,7 @@ import natarajImage from '../images/natarajMassoterapia.webp'
 import noteScanImage from '../images/noteScan.png'
 import numeLabImage from '../images/numeLab.png'
 import techFinanceImage from '../images/techFinanceBlog.png'
+import benderGamesVideo from '../videos/benderGames.mp4'
 import noteScanVideo from '../videos/noteScan.mp4'
 import pomOneVideo from '../videos/pomOne.mp4'
 import traineeProgressVideo from '../videos/traineeProgress.mp4'
@@ -141,13 +142,13 @@ export const projects = [
         type: 'Application',
     },
     {
-        id: 'bebedeira-games',
-        name: 'Bebedeira Games',
+        id: 'bender-games',
+        name: 'Bender Games',
         category: 'mobile',
         description: 'Android party-game app for adults. Eighteen games, with menus in Portuguese, English, Spanish, French, and Hindi.',
         technologies: ['Kotlin', 'Jetpack Compose', 'WebView'],
         image: '',
-        video: '',
+        video: benderGamesVideo,
         demo: '',
         github: '',
         featured: false,
@@ -164,19 +165,6 @@ export const projects = [
         video: traineeProgressVideo,
         demo: '',
         github: 'https://github.com/GabrielRasf/TraineeProgress',
-        featured: false,
-        status: 'Public',
-        type: 'Application',
-    },
-    {
-        id: 'converter-image',
-        name: 'converterImage',
-        category: 'applications',
-        description: 'Desktop tool that turns photos into vector-style images, with flat, line, and sketch styles, and PNG or SVG export.',
-        technologies: ['Python', 'OpenCV', 'CustomTkinter'],
-        image: '',
-        demo: '',
-        github: 'https://github.com/GabrielRasf/converterImage',
         featured: false,
         status: 'Public',
         type: 'Application',
