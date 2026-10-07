@@ -7,6 +7,6 @@ export const site = {
     url: configured,
     // Only place for the WhatsApp number: digits with country code.
     // Leave this empty until the real number is available. No other file should store it.
-    whatsapp: "+5531998790473",
+    whatsapp: "+5531998790443",
     whatsappMessage: 'Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços de desenvolvimento de sites e sistemas web.',
 }
